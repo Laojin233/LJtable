@@ -175,14 +175,9 @@ body input:focus{
 }
 
 .main_left .main_left-fix .left_one {
-	/*display: none;*/
-	/*background: url(img/gon.png) no-repeat;
-			    background-size: 230px;
-			    background-position: -4px -55px;*/
-	/*position: relative;*/
-	/*height: 330px;*/
-	padding: 20px 10px 10px 10px;
-	color: #000;
+	margin: 10px 0px 10px 20px;
+    color: #000;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .1);
 }
 
 .left_one .left_bg {width: 100%;}
@@ -193,11 +188,9 @@ body input:focus{
     /* position: absolute; */
     /* top: 15px; */
     /* left: 730px; */
-   	margin:0 12px ;
     height: 97px;
     text-align: center;
     background-color: #95c5e8;
-    border-radius: 10px 10px 0 0;
     z-index: 2;
 }
 .fair-timer .title {
@@ -239,12 +232,10 @@ body input:focus{
 	/*border: 1px solid #ccc;*/
 	/*background-color: #5a9cd9;*/
 	color: #000;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, .1);
 	/*width: 182px;*/
 	height: 260px;
 	margin: 0 12px;
 	padding-top: 10px;
-	padding-left: 13px;
 	top: 100px;
 	left: 12px;
 }
@@ -684,7 +675,7 @@ body input:focus{
 }
 
 .item .busy {
-	background-color: #fffbe9;
+	background-color: #f7f1ba;
 	color: #FFCC00;
 }
 
