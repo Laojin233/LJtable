@@ -112,19 +112,9 @@ body input:focus{
     margin-right: 16%;
     width: 84%;
     float: right;
-    /* background: #1892E8; */
     text-align: left;
     border-bottom: 10px solid #e6f9f2;
-	
-	/*background: #1892E8;*/
-
-    /*position: relative;
-    right: 390px;*/
-    /* height: 120px; 
-    /*top: 50px;
-    z-index: 2;*/
-    /*background: url(img/121.png) no-repeat 103px 12px;*/
-    }
+}
 .change_hall img{
 	
 }
@@ -149,10 +139,7 @@ body input:focus{
     border-radius: 4px 4px 0 0;
     cursor: pointer;
 }
-/*.change_hall .hall_personal{
-  	background-color: #e6f9f2;
-  	color: #00867c;
-}*/
+
 .change_hall .hall_personal:hover{
   	background-color: #e6f9f2;
 }
@@ -550,14 +537,14 @@ body input:focus{
 
 .item_functional .functional_bg{
 	position: relative;
-    left: 50%;
+    /*left: 50%;*/
 }
 .item_functional .functional_bg .img_table{
-    height: 80px;
+        height: 80px;
     position: absolute;
-    left: -80px;
-    width: 160px;
-    top: -30px
+    left: 10%;
+    width: 80%;
+    top: -30px;
 }
 .item_functional .functional_bg .img_boy, .img_girl {
    	width: 60px;
@@ -566,10 +553,10 @@ body input:focus{
     bottom: 28px;
 }
 .item_functional .functional_bg .img_boy{
-	    left: -61px;
+	   left: 21%;
 }
 .item_functional .functional_bg .img_girl{
-	    left: 3px;
+	    left: 50%;
 }
 .item_functional .functional_btn{
 	    position: relative;
@@ -590,10 +577,11 @@ body input:focus{
     line-height: 30px;
     display: block;
     border-radius: 5px;
-    position: relative;
-    top: -19px;
-    left: 35%;
+    position: absolute;
+    top: 11px;
+    right: 35%;
     text-align: center;
+    margin: 0;
 }
 .item_functional .functional_btn #social-btn{
        width: 64px;
@@ -617,18 +605,9 @@ body input:focus{
     background-position: 3px 3px;
     background-size: 24px;
 }
-.main_list-jobs .item #video-btn{
-	left: 34%;
-    background-image: url(img/124.png);
-}
-.main_list-jobs .item #video-btn:hover{
-	background-color: #92dcd8;
-	/*color:#00867c;*/
-}
-.main_list-jobs .item #online-social-btn:hover{
-	background-color: #92dcd8;
-	/*color:#00867c;*/
-}
+.main_list-jobs .item #video-btn{left: 34%;background-image: url(img/124.png);}
+.main_list-jobs .item #video-btn:hover{background-color: #92dcd8;}
+.main_list-jobs .item #online-social-btn:hover{background-color: #92dcd8;}
 .main_list-jobs .item {
 }
 .item_functional .functional_btn #online-social-btn{
@@ -777,27 +756,16 @@ body input:focus{
 	overflow: hidden;
 }
 .main_list-person .item .item_right .right_tag span{
-	display: inline-block;
-    height: 25px;
-    border-radius: 30px;
-    background: #649ce5;
+	    display: inline-block;
+    height: 24px;
     cursor: pointer;
-    margin-top: 8px;
+    margin-top: 6px;
     /* text-align: center; */
-    line-height: 25px;
+    line-height: 23px;
     font-size: 12px;
     padding: 0 12px;
-    color: #fff;
-}
-
-.main_list-person .item .item_right .right_tag span:nth-child(odd){
-	background: #649ce5
-}
-.main_list-person .item .item_right .right_tag span:nth-child(even){
-	background: #2DC1B7
-}
-.main_list-person .item .item_right .right_tag span:nth-child(even){
-	background: #2DC1B7
+    border: 1px solid #4caf50;
+    color: #4caf50;
 }
 .main_list-person .item .item_right .right_info{
 	line-height: 25px;

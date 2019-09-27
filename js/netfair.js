@@ -69,7 +69,6 @@ window.onload=function() {
 //小提示-2
 var _is_tips1=0;
 $('#hall_company').on('click', function(){
-	console.log(this.checked)
 	if(_is_tips1==0){
 		 layer.tips('企业可在此大厅浏览优秀人才！', this,{
 		  	time:2000,
