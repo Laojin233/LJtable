@@ -7,16 +7,17 @@ $('.change_hall input').on('click',function(){
 		//点击 招聘大厅 按钮时			
 		$('.main_list-jobs').first().css('display','block')		
 		$('.main_list-person').first().css('display','none')
-		$('.change_hall').css("border-bottom","10px solid #e6f9f2")
-		$('.hall_company').first().css('background-color','#fff')
-		$('.hall_personal').first().css('background-color','#e6f9f2')
+		$('.hall_company').first().addClass('change_active_c')
+		$('.hall_personal').first().addClass('change_active_b')
+		$('.hall_company').first().removeClass('change_active_a')
 	} else{
 		//点击 求职大厅 按钮时
 		$('.main_list-jobs').first().css('display','none')		
 		$('.main_list-person').first().css('display','block')
 		$('.change_hall').css("border-bottom","10px solid #eaf4f8")
-		$('.hall_company').first().css("background-color","#EAF4F8")
-		$('.hall_personal').first().css('background-color','#fff')
+		$('.hall_company').first().addClass('change_active_a')
+		$('.hall_personal').first().removeClass('change_active_b')
+		$('.hall_personal').first().addClass('change_active_c')
 	}	
 	
 })

@@ -135,7 +135,7 @@ body input:focus{
     line-height: 40px;
     padding: 0 10px 0 10px;
     font-size: 18px;
-    background-color: #fff;
+    /*background-color: #fff;*/
     color: #00867c;
     height: 40px;
     /*background: #eaf4f8;*/
@@ -149,22 +149,24 @@ body input:focus{
     border-radius: 4px 4px 0 0;
     cursor: pointer;
 }
-.change_hall .hall_personal{
+/*.change_hall .hall_personal{
   	background-color: #e6f9f2;
   	color: #00867c;
-  	/*background: url(img/119.png) no-repeat;*/
-}
+}*/
 .change_hall .hall_personal:hover{
   	background-color: #e6f9f2;
 }
 .change_hall .hall_company:hover{
-	background-color: #EAF4F8;
+	background: #EAF4F8;
+}
+.change_active_c{
+	background: #fff;
 }
 .change_active_a{
-	background-color: #EAF4F8;
+	background: #EAF4F8;
 }
 .change_active_b{
-	background-color: #E6F9F2;
+	background: #E6F9F2;
 }
 /*倒计时和信息板*/
 .line{
