@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>导航栏7</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<style type="text/css">
+			:root {
+				--navHeight: 80px;
+				--mainBGC: #202329;
+				}
+			body {height: 2000px;/*background:#2DC1B7;*/}
+			* {padding: 0;margin: 0;border: 0;}		
+		
+		.header {
+				width: 100%;
+				/*background:var(--mainBGC);*/
+				position: relative;
+				/*box-shadow: 0 0 10px 8px #0CC;*/
+				top: 0;
+				position: fixed;
+				display: flex;
+				z-index: 100;
+				/*
+			     * 定义初始状态的transform属性
+			     * transition定义变换属性和周期，此处为所有属性，周期2s
+			     */
+				/*//transform: translateY(-303px) rotate(130deg) rotateY(-270deg) rotateX(100deg) scale(0.5,0.5);scale(1,1)*/
+				transition: all 1s;
+				transform: translate3d(0px, 0px, 0px);
+			}
+			/*.header:hover{
+							opacity: 1;
+					transform: translateY(-80px) rotate(0deg) rotateY(0deg) rotateX(0deg) ;
+			}  
+			*/
+			
+			.show-top {
+				position: fixed;
+				width: 100%;
+				top: 0;
+				box-shadow: 0 10px 8px rgba(6, 0, 1, .05);
+			}
+			
+			.nav_menu .active_lg {
+				font-weight: 600;
+				background: url(img/243.png) no-repeat;
+				background-position: 30px -20px;
+			}
+			
+			.header_nav {
+				max-width: 1200px;
+				min-width: 900px;
+				/* width: 1100px; */
+				margin: 0 auto;
+				height: var(--navHeight)
+			}
+			
+			.header_nav .logo_box {
+				float: left;
+				height: var(--navHeight);
+				padding-top: 20px;
+			}
+			
+			.logo_box img {
+				height: 60px;
+				border: 0;
+			}
+			
+			.nav_menu {
+				height: var(--navHeight);
+				justify-content: center;
+				max-width: 900px;
+				margin-left: 30px;
+				display: inline-block;
+			}
+			
+			.nav_menu ul {
+				height: var(--navHeight);
+				margin: 0;
+			}
+			
+			.nav_menu ul li {
+				width: 70px;
+				margin-left: 15px;
+				height: var(--navHeight);
+				line-height: var(--navHeight);
+				color: #202329;
+				text-align: center;
+				display: inline-block;
+				font-weight: 300;
+				cursor: pointer;
+			}
+			
+			.nav_menu .active {
+				font-weight: 600;
+				color: #444444;
+				background: url(img/243.png) no-repeat;
+				background-position: 30px -20px;
+			}
+			
+			.nav_menu li:hover {
+				/*text-decoration: underline;*/
+				/*border-radius: 60%;
+    				border: 30px solid #1c1c1c;*/
+				/*font-weight: 600;*/
+				color: #19D6C0;
+			}
+			
+			.nav_btn_list{
+				height: var(--navHeight);
+				line-height: var(--navHeight);
+				display: inline-block;
+				float: right;
+			}
+			.header_nav .nav_btn{				
+				height: var(--navHeight);
+				display: inline-block;
+				/*display: none;*/
+				float: right;
+			}
+			.nav_btn input{
+					cursor: pointer;
+				    border-radius: 15px;
+				    text-align: center;
+				    font-size: 13px;
+				    height: 30px;
+				    box-shadow: 0 3px 6px 0 rgba(6,0,1,.05);
+				    line-height: 30px;
+				    padding: 0 9px 0 11px;
+				    min-width: 0;
+				    margin-left: 17px;
+				    /*color: #19d6c0;*/
+				   -webkit-appearance: none;
+				    font-size: 1rem;
+				    text-shadow: none;
+				    line-height: 1.2;
+				    display: inline-block;
+				    margin: 0 10px 0 0;
+				    position: relative;
+				    border-radius: 4px;
+				    border: 3px solid transparent;
+				    background: #444857;
+				    color: white;
+				    cursor: pointer;
+				    white-space: nowrap;
+				    text-overflow: ellipsis;
+				    text-decoration: none !important;
+				    text-align: center;
+				    font-weight: normal !important;
+			}
+			
+			#login-btn{background-color: #FFFFFF;color: #2DC1B7;}
+			#register-btn{background-color:#19d6c0;color: #000;}
+			.
+			/*------------------------------------------*/
+			
+			#loading {
+				height: 250px;
+				width: 100%;
+				position: relative;
+				z-index: 1;
+				margin-top: 0px;
+				bottom: 245px;
+			}
+			
+			#loading-center {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			#loading-center-absolute {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				height: 150px;
+				width: 150px;
+				margin-top: -75px;
+				margin-left: -75px;
+				-ms-transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+			
+			.object {
+				width: 20px;
+				height: 20px;
+				background-color: #FFF;
+				position: absolute;
+				left: 65px;
+				top: 65px;
+				-moz-border-radius: 50% 50% 50% 50%;
+				-webkit-border-radius: 50% 50% 50% 50%;
+				border-radius: 50% 50% 50% 50%;
+			}
+			
+			.object:nth-child(2n+0) {
+				margin-right: 0px;
+			}
+			
+			#object_one {
+				-webkit-animation: object_one 2s infinite;
+				animation: object_one 2s infinite;
+				-webkit-animation-delay: 0.2s;
+				animation-delay: 0.2s;
+			}
+			
+			#object_two {
+				-webkit-animation: object_two 2s infinite;
+				animation: object_two 2s infinite;
+				-webkit-animation-delay: 0.3s;
+				animation-delay: 0.3s;
+			}
+			
+			#object_three {
+				-webkit-animation: object_three 2s infinite;
+				animation: object_three 2s infinite;
+				-webkit-animation-delay: 0.4s;
+				animation-delay: 0.4s;
+			}
+			
+			#object_four {
+				-webkit-animation: object_four 2s infinite;
+				animation: object_four 2s infinite;
+				-webkit-animation-delay: 0.5s;
+				animation-delay: 0.5s;
+			}
+			
+			#object_five {
+				-webkit-animation: object_five 2s infinite;
+				animation: object_five 2s infinite;
+				-webkit-animation-delay: 0.6s;
+				animation-delay: 0.6s;
+			}
+			
+			#object_six {
+				-webkit-animation: object_six 2s infinite;
+				animation: object_six 2s infinite;
+				-webkit-animation-delay: 0.7s;
+				animation-delay: 0.7s;
+			}
+			
+			#object_seven {
+				-webkit-animation: object_seven 2s infinite;
+				animation: object_seven 2s infinite;
+				-webkit-animation-delay: 0.8s;
+				animation-delay: 0.8s;
+			}
+			
+			#object_eight {
+				-webkit-animation: object_eight 2s infinite;
+				animation: object_eight 2s infinite;
+				-webkit-animation-delay: 0.9s;
+				animation-delay: 0.9s;
+			}
+			
+			#object_big {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				left: 50px;
+				top: 50px;
+				-webkit-animation: object_big 2s infinite;
+				animation: object_big 2s infinite;
+				-webkit-animation-delay: 0.5s;
+				animation-delay: 0.5s;
+			}
+			
+			@-webkit-keyframes object_big {
+				50% {
+					-webkit-transform: scale(0.5);
+				}
+			}
+			
+			@keyframes object_big {
+				50% {
+					transform: scale(0.5);
+					-webkit-transform: scale(0.5);
+				}
+			}
+			
+			@-webkit-keyframes object_one {
+				50% {
+					-webkit-transform: translate(-65px, -65px);
+				}
+			}
+			
+			@keyframes object_one {
+				50% {
+					transform: translate(-65px, -65px);
+					-webkit-transform: translate(-65px, -65px);
+				}
+			}
+			
+			@-webkit-keyframes object_two {
+				50% {
+					-webkit-transform: translate(0, -65px);
+				}
+			}
+			
+			@keyframes object_two {
+				50% {
+					transform: translate(0, -65px);
+					-webkit-transform: translate(0, -65px);
+				}
+			}
+			
+			@-webkit-keyframes object_three {
+				50% {
+					-webkit-transform: translate(65px, -65px);
+				}
+			}
+			
+			@keyframes object_three {
+				50% {
+					transform: translate(65px, -65px);
+					-webkit-transform: translate(65px, -65px);
+				}
+			}
+			
+			@-webkit-keyframes object_four {
+				50% {
+					-webkit-transform: translate(65px, 0);
+				}
+			}
+			
+			@keyframes object_four {
+				50% {
+					transform: translate(65px, 0);
+					-webkit-transform: translate(65px, 0);
+				}
+			}
+			
+			@-webkit-keyframes object_five {
+				50% {
+					-webkit-transform: translate(65px, 65px);
+				}
+			}
+			
+			@keyframes object_five {
+				50% {
+					transform: translate(65px, 65px);
+					-webkit-transform: translate(65px, 65px);
+				}
+			}
+			
+			@-webkit-keyframes object_six {
+				50% {
+					-webkit-transform: translate(0, 65px);
+				}
+			}
+			
+			@keyframes object_six {
+				50% {
+					transform: translate(0, 65px);
+					-webkit-transform: translate(0, 65px);
+				}
+			}
+			
+			@-webkit-keyframes object_seven {
+				50% {
+					-webkit-transform: translate(-65px, 65px);
+				}
+			}
+			
+			@keyframes object_seven {
+				50% {
+					transform: translate(-65px, 65px);
+					-webkit-transform: translate(-65px, 65px);
+				}
+			}
+			
+			@-webkit-keyframes object_eight {
+				50% {
+					-webkit-transform: translate(-65px, 0);
+				}
+			}
+			
+			@keyframes object_eight {
+				50% {
+					transform: translate(-65px, 0);
+					-webkit-transform: translate(-65px, 0);
+				}
+			}
+		</style>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="header_nav">
+				<div class="logo_box">
+					<a href="#">
+						<!--<img src="img/logo_home_1.png"/>-->
+					</a>
+				</div>
+				<div class="nav_menu">
+					<ul>
+						<li class="active">首页</li>
+						<li>职位</li>
+						<li>校园招聘</li>
+						<li>企业库</li>
+						<li>院校库</li>
+						<li id="other">其他
+							<div class="dropdown">
+								<a href="header_nav.html">导航栏1</a>
+								<a href="header_nav2.html">导航栏2</a>
+								<a href="header_nav3.html">导航栏3</a>
+								<a href="header_nav4.html">导航栏4</a>
+								<a href="header_nav5.html">导航栏5</a>
+								<a href="header_nav6.html">导航栏6</a>
+								<a href="header_nav7.html">导航栏7</a>
+								<a href="header_nav8.html">导航栏8</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="nav_btn_list">
+					<!--<div class="imgBox">						
+						<img src="img/圈用户.png" style="height: 35px;"/>
+					</div>-->
+					<div class="nav_btn">
+						<input type="button" name="" id="login-btn" value="登录" />
+						<input type="button" name="" id="register-btn" value="注册" />
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="main">
+			<div class="logo_title">
+				<h1>
+					Welcome to here！
+					
+					<span id="pp">
+						Bate
+					</span>
+				</h1>
+				<h3>
+					ALL ooooo
+				</h3>
+			</div>
+		</div>
+		<!--loading-->
+		<div id="loading">
+			<div id="loading-center">
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two"></div>
+					<div class="object" id="object_three"></div>
+					<div class="object" id="object_four"></div>
+					<div class="object" id="object_five"></div>
+					<div class="object" id="object_six"></div>
+					<div class="object" id="object_seven"></div>
+					<div class="object" id="object_eight"></div>
+					<div class="object" id="object_big"></div>
+				</div>
+			</div>
+
+		</div>
+		<div class="main">
+			<div class="main-fix">				
+				<div class="main_head box-shadow-2">
+					 <div id="playBtn" class="circle" style="margin: 20px 0px 10px 20px;">
+			            <div class="circle_inner_play">
+			            </div>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(window).scroll(function() {
+			if($(window).scrollTop() > 20) {
+				//					$('.header').css('transform','translate3d(0px, 0px, 0px)')
+				$('.header').css('background-color', '#202329')
+				$('.nav_menu ul li').css('color', '#fff')
+			}
+			if($(window).scrollTop() == 0) {
+				$('.header').css('background-color', '')
+				$('.nav_menu ul li').css('color', '#202329')
+				//					$('.header').css('transform','translate3d(0px, -80px, 0px)')
+			}
+			//console.log(this)
+			//console.log()
+
+		})
+	</script>
+
+</html>

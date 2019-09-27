@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//let 与 var 的区别；使用var有时会出现变量提升
+		
+		//不能变化的量，用const声明
+		const fruit='apple';
+		console.log('常量测试',fruit)
+		//fruit='banane'
+		//console.log(fruit)
+		//解构
+		var array=[1,2,3]
+		var[b1,b2,b3]=array//相当于这是个匿名数组
+		console.log(b1,b1,b3)
+		
+		let obj={
+			a:'apple',
+			b:'banane',
+			c:'chelly',
+		}
+		let {a:d,b:e,c:dada,}=obj
+		
+		console.log(d,e,dada)
+		
+		let strA='A',strB='B'
+		let str=EEE`这是文本从 ${strA} 到 ${strB} `;
+		function EEE(strings,...values){
+			console.log(strings);
+			console.log(values)
+		}
+		console.log(str);
+	</script>
+</html>

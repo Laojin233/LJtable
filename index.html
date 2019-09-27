@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+	.index-canvas{
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		height: 100%;
+		color: rgba(106, 168, 168, 0.849);
+	}
+	audio, canvas, progress, video {
+		display: inline-block;
+		vertical-align: baseline;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/upload.css"/>
+	<!--<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>-->
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<canvas id="indexCanvas" class="index-canvas" width="1625" height="1075"></canvas>
+		<!--Canvas-->
+		
+		<div class="roll">
+		<div class="uploadLicense">
+			<h2>请上传手持身份证照片</h2>
+			<div class="upload-img">
+				<div id="zhaoxiangji">
+					<div class="zhaoxiangji-img" id="zhaoxiangji-img"><img src="../public/images/zhaoxiangji.png"
+							alt=""></div>
+					<p id="zhaoxiangji-p">上传个人身份证</p>
+					<input type="button" id="uploadLicense" onclick="showExplain(event)">
+					<div id="lisence" style='width:174px; height:248px;'></div>
+				</div>
+			</div>
+		</div>
+		<div class="licenseDemo">
+
+			<h3 class="demoText">
+				<span class="line"></span>
+				<span class="txt">上传图片要求 </span>
+				<span class="line"></span>
+			</h3>
+
+			<div class="demo-imglist">
+				<ul class="demo-text">
+					<li>
+							     
+						<img src="../public/images/demo21.png" alt="">
+						<span><img src="../public/images/107.png" alt="">不能模糊 </span>
+					</li>
+					<li>
+						<img src="../public/images/demo22.png" alt="">
+						<span><img src="../public/images/107.png" alt="">不能倾斜</span>
+					</li>
+					<li>
+						<img src="../public/images/demo23.png" alt="">
+						<span><img src="../public/images/107.png" alt="">不能挡住手</span>
+					</li>
+					<li>
+						<img src="../public/images/demo24.png" alt="">
+						<span><img src="../public/images/107.png" alt="">不能挡住头</span>
+					</li>
+					<!-- <img src="../public/images/107.png" alt=""><span></span>
+					<img src="../public/images/107.png" alt=""><span></span>
+					<img src="../public/images/107.png" alt=""><span></span> -->
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="uploadButton">
+		<div class="uploadButton-bnts">
+			<input type="button" value="上一步" id="revertButton">
+			<input type="button" value="出发！" onclick="submit()" id="submitButton" >
+		</div>
+		
+	</div>
+
+
+	<div class="uploadExplain" id="uploadExplain">
+		<div class="explainText">
+			<span class="explainTitle">
+				<p>营业执照须知</p>
+			</span>
+			<ul>
+				<li><span></span>
+					<p>营业执照清晰完善,不能裁剪</p>
+				</li>
+				<li><span></span>
+					<p></p> 不支持手机屏幕截图和电脑翻拍图片
+				</li>
+				<li><span></span>
+					<p>营业执照的黑白复印件、扫描件需加盖红色公司公章</p>
+				</li>
+				<li><span></span>
+					<p></p>营业执照的二维码能识别出本公司信息
+				</li>
+				<li><span></span> 如公司信息已变更，请上传最新营业执照</li>
+				<li><span></span> 营业执照名称与公司全称一致</li>
+				<li> <span></span>如添加水印须与嘟嘟校招网招聘审核相关 </li>
+
+				<li> <span></span>·待补充.</li>
+			</ul>
+		</div>
+		<div class="explainClose">
+			<input type="button" value="确认" id="confirmButton" onclick="console.log('1111')">
+			<input type="file" accept="image/*" id="explainClose">
+			<!--<input type="file" accept="image/*" id="explainClose"  onchange="PreviewImage(this)" >-->
+		</div>
+	<!--</div>
+		<input type="file"  id="uploadFile" accept="image/*" onchange="PreviewImage(this)" >
+		<br />
+		<div id="imgPreview" style='width:120px; height:100px;'>
+		    <img id="img1" src="" width="120" height="100" >
+	</div>-->
+
+	
+</body>
+	<script src="js/indexCanvas.js" type="text/javascript" charset="utf-8"></script>
+</html>

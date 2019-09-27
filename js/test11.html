@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>setInterval案例</title>
+    </head>
+    <body style="height: 2000px">
+        <input type="text" name="clock" id="clock" value="" style="width: 500px;"/>
+        <button id="stop" onclick="timer=window.clearInterval(timer)">停止时间函数</button>
+        <script type="text/javascript">
+            function clock(){
+                var t = new Date();
+                document.getElementById('clock').value = t;
+            }
+            var timer = setInterval(clock, 50);
+            var stop = document.getElementById('stop');
+            stop.onclick = function(){
+                clearInterval(timer);
+            }
+        </script>
+    </body>
+</html>

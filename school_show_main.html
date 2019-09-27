@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset="UTF-8">
+		<title>中国科技大学-dudujob</title>
+		<link rel="stylesheet" type="text/css" href="css/school_show.css"/>
+	</head>
+	
+<body>
+    <div id="topmenu" style="height:80px;"></div>
+    <div style="width: 1000px; margin-left: auto; margin-right: auto; display: block;">
+
+        <div class="am-g">
+            <div class="am-u-sm-3" style="padding-left: 0;">
+                <div id="zpxx_info_section_left" style="margin-left: 0px; padding-right: 5px;">
+                    <div id="zpxx_info_section_left_zpxx">
+                        <!--招聘信息-->
+                        <h3 id="columntitle">
+                            <img src="ustc/img/chart.png">
+                            <span>招聘信息</span>
+                        </h3>
+                        <ul style="padding-left: 0px;" id="contentclass"></ul>
+                    </div>
+                    <div id="zpxx_info_section_left_zprl">
+                        <!--招聘日历-->
+                        <h3>
+                            <img src="ustc/img/date.png">
+                            <span class="">招聘日历</span>
+                        </h3>
+                        <div style="padding: 5px; margin-top: 0px">
+                            <!-- #include file="calendar.html" -->
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-9" style="padding-left: 5px; padding-right: 0">
+                <div class="am-panel am-panel-default" style="border: none">
+                    <div class="am-panel-hd" style="height: 40px; border: solid 1px #DDDDDD; padding-left: 20px; padding-right: 20px;">
+                        <ol class="am-breadcrumb" style="margin-top: -8px">
+                            <li class="am-active am-accordion-title" style="color: black" id="caption"></li>
+                        </ol>
+
+
+                    </div>
+                </div>
+                <div class="am-panel am-panel-default" style="border: solid 1px #DDDDDD; border-top: none; min-height: 800px; margin-top: -20px">
+
+                    <table class="am-table am-table-striped am-table-hover table-main" id="ContentBody" style="">
+
+                        <tbody id="bodylist" style="padding-left: 25px;">
+                            <tr>
+                                <td colspan="10" style="height: 50px; line-height: 50px; text-align: center;"><i class="am-icon-spinner am-icon-pulse"></i><span style="margin-left: 10px; color: red">正在加载数据，请稍候</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
+  am-avg-md-3 am-avg-lg-5 am-gallery-default"
+                        data-am-gallery="{ pureview: false }" id="AlbumBody"></ul>
+
+                    <div class="am-cf" style="padding-left: 15px;">
+                        查询到<label id="recordercount">0</label>
+                        条记录，共<label id="pagecount">0</label>页
+                        <div class="am-fr">
+                            <ul class="am-pagination am-pagination-centered" id="navul"></ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script type="text/javascript">
+        var currentindex = 1;
+        var parentid;
+        var columnid;
+        var showpages = 5;
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+        $("#searchbtn").click(function () {
+            ClassChange(parentid, columnid, 1);
+        });
+
+        $(document).ready(function () {
+            $('#topmenu').load('top.html');
+            $('#footer').load('footer.html');
+            $('#calendar').load('calendar.html');
+            parentid = getUrlParam("parentid");
+            columnid = getUrlParam("columnid");
+
+            if (parentid == null) {
+                window.document.location.href = "index.html";
+                return false;
+            }
+            ClassChange(parentid, columnid, 1);
+           // BuildCale(0);
+        });
+
+        //新闻列表
+        function ClassChange(parentid, columnid, index) {
+            parentid = parentid;
+            columnid = columnid;
+            $("#ContentBody").show();
+            $("#caption").html("文章列表");
+            var frmdata = {
+                pagesize: 15,
+                pageindex: index,
+                action: "contentlist",
+                parentid: parentid,
+                columnid: columnid,
+                key: $("#key").val(),
+                rand: Math.random()
+            };
+
+            $.ajax({
+                type: 'POST',
+                data: frmdata,
+                url: "http://ustc.ahbys.com/API/Web/index10358.ashx?rd=" + Math.random(),
+                success: function (data) {
+                  
+                    if (data.r == 0) {
+                        currentindex = index;
+                        $('#contentclass').html(data.Columnlist);
+                        $('#columntitle').html(data.columntitle);
+
+                        var model = data.model;
+                        if (model == "1") {
+                            var len = data.Content.RowsCount;
+
+                            if (len > 0) {
+                                var contenthtml = "";
+                                for (var i = 0; i < len; i++)
+                                    contenthtml += data.Content.Contentclass[i];
+                                $("#bodylist").html(contenthtml);
+                                $("#recordercount").html(data.Content.RecorderCount);
+                                $("#pagecount").html(data.Content.PageCount);
+                                if (data.Content.PageCount > 1) {
+                                    console.log(12121212121);
+                                    $("#navul").html(pagehtml1(parentid, columnid, index, data.Content.PageCount));
+                                    $(".am-cf").show();
+                                } else $(".am-cf").hide();
+                                $("#caption").html("文章列表");
+                            }
+                            else {
+                                $("#bodylist").html("<td colspan='4'>暂无数据</td>");
+                                $(".am-cf").hide();
+                            }
+                        }
+                        else if (model == "3") {
+                            $("#caption").html("文章内容");
+                            $("#bodylist").html("<div style='padding:25px;'>" + data.Content + "</div>");
+                            $(".am-cf").hide();
+                        }
+                    }
+                }
+            });
+        }
+
+        function pagehtml1(type, classid, index, pagecount) {
+            var begin = 1;
+            for (var i = 1; i <= pagecount; i++) {
+                if (index >= i && index < begin + showpages) break;
+                else begin += showpages;
+            }
+            var end = parseInt(begin) + parseInt(showpages) - 1;
+
+            if (parseInt(end) > parseInt(pagecount))
+                end = pagecount;
+
+            var navhtml = "";
+
+            if (index == 1) {
+                navhtml = "<li class='am-disabled'><a href='javascript:void(0)'>第一页</a></li>";
+                navhtml += "<li class='am-disabled'><a href='javascript:void(0);'>上一页</a></li>";
+            }
+            else {
+                navhtml = "<li><a href='javascript:ClassChange(" + type + "," + classid + ",1)'>第一页</a></li>";
+                navhtml += "<li><a href='javascript:ClassChange(" + type + "," + classid + "," + (index - 1).toString() + ")'>上一页</a></li>";
+            }
+
+            for (var i = begin; i <= end; i++) {
+                if (i == index)
+                    navhtml += "<li  class='am-active'><a href='javascript:ClassChange(" + type + "," + classid + "," + i.toString() + ")'>" + i.toString() + "</a></li>";
+                else navhtml += "<li><a href='javascript:ClassChange(" + type + "," + classid + "," + i.toString() + ")'>" + i.toString() + "</a></li>";
+            }
+
+            if (index == pagecount) {
+                navhtml += "<li class='am-disabled'><a href='javascript:void(0);'>下一页</a></li>";
+                navhtml += "<li class='am-disabled'><a href='javascript:void(0);'>最后一页</a></li>";
+            }
+            else {
+                navhtml += "<li><a href='javascript:ClassChange(" + type + "," + classid + "," + (index + 1).toString() + ")'>下一页</a></li>";
+                navhtml += "<li><a href='javascript:ClassChange(" + type + "," + classid + "," + pagecount + ")'>最后一页</a></li>";
+            }
+            return navhtml;
+        }
+
+    </script>
+</body>
+	</body>
+</html>

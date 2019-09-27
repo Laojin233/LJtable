@@ -1,0 +1,19 @@
+.dropdown{
+    	    display: none;
+		    position: absolute;
+		    background: url(../img/jianbianBG.png) no-repeat;
+		    width: 75px;
+		    padding-bottom: 30px;
+		    background-size: 80px 430px;
+		}
+    .dropdown a{
+    	display: block;
+    	color: #fff;
+    	text-decoration:none;
+    	height: 50px;
+    }
+     .dropdown a:hover{
+     	color: #2DC1B7;
+     	
+     }
+    #other:hover .dropdown{display: block;}

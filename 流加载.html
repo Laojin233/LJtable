@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		/*整体共公样式*/
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑", "Lucida Grande", "Lucida Sans", Helvetica, Arial, Sans;
+}
+/*防止主题样式更改ie下背景*/
+input{
+    background:#fff;
+}
+input:focus {outline: none;}
+select:focus {outline: none;}
+textarea:focus {outline: none;}
+textarea{resize: none;}
+body{
+    background: #EEEEEE;
+    overflow-x: hidden;
+    font-size: 62.5%;
+}
+a{
+    text-decoration: none;
+}
+a:focus {
+    outline:none;
+}
+img{
+    border: none;
+}
+b{
+    font-weight:normal; 
+}
+ul{
+    list-style: none;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.ff{
+    font-family:"微软雅黑", "Lucida Grande", "Lucida Sans", Helvetica, Arial, Sans;
+}
+.fz_12{
+    font-size:12px;
+}
+.fz_13{
+    font-size:13px;
+}
+.fz_14{
+    font-size:14px;
+}
+.fz_16{
+    font-size:16px;
+}
+.fz_18{
+    font-size:18px;
+}
+.fz_red{
+    color:red;
+    font-weight:normal;
+}
+.fc_red{
+    font-size: 12px;
+    color: red;
+}
+.fc_blue{
+    color: #1892e8;
+}
+.fc_yellow{
+    font-size: 12px;
+    color: #fd9904;
+}
+.fc_green{
+    font-size: 12px;
+    color: #3ea406;
+}
+.fc_gray{
+    font-size: 12px;
+    color: #999;
+}
+.mr10{
+    margin-right:10px;
+}
+.pt14{
+    padding-top: 14px;
+}
+/*公用清除浮动样式*/
+.clear{
+   clear: both; 
+}
+.clearfloat:after{
+    clear: both;
+    display:block;
+    content:"";
+    overflow: hidden;
+    height:0px;
+}
+.clearfloat{
+    zoom:1;
+}
+.radius{
+    border-radius: 5px;
+}
+.bds{
+    box-shadow: 0 0 5px #cccccc;
+    -webkit-box-shadow: 0 0 5px #cccccc;
+    -moz-box-shadow: 0 0 5px #cccccc;
+    -ms-box-shadow: 0 0 5px #cccccc;
+}
+a.text_line{
+    text-decoration: underline;
+}
+a.a_t_line:hover{
+    text-decoration: underline;
+}
+.indet_10{
+    text-indent: 10px;
+}
+.t_d_18{
+    text-indent: 18px;
+}
+.t_d_12{
+    text-indent: 12px;
+}
+.t_d_10{
+    text-indent: 10px;
+}
+.t_d_8{
+    text-indent: 8px;
+}
+.t_d_6{
+    text-indent: 6px;
+}
+.t_d_5{
+    text-indent: 5px;
+}
+.pointer{
+    cursor: pointer;
+}
+.dis-none{
+    display: none;
+}
+.dis-block{
+    display: block;
+}
+/* 遮罩层 */
+#wrapper{
+    width: 100%;
+    background: #000;
+    opacity: 0;
+    filter:alpha(opacity=0);
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+</style>
+	</head>
+	<body>
+		<!--瀑布流加载-->
+		<p class="content">
+		<!-- 瀑布流样式开始 -->
+		<p class="waterfull clearfloat" id="waterfull">
+		    <ul>
+		 
+		    </ul>
+		</p>
+		<!-- loading按钮自己通过样式调整 -->
+		<p id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
+		    Loading.....
+		</p>
+		</p>
+	</body>
+</html>
+<script src="__PUBLIC__/js/jquery-2.1.4.min.js"></script><!--这个插件是JQ必须-->
+<!--瀑布流star-->
+<!--兼容ie9-->
+ <script src="__PUBLIC__/waterfall/js/css3-mediaqueries.js"></script>
+ <script src="__PUBLIC__/waterfall/js/jQueryColor.js"></script>
+ <!--这个插件是瀑布流主插件函数必须-->
+ <script src="__PUBLIC__/waterfall/js/jquery.masonry.min.js"></script>
+ <!--这个插件只是为了扩展jquery的animate函数动态效果可有可无-->
+ <script src="__PUBLIC__/waterfall/js/jQeasing.js"></script>
+ <!--瀑布流end-->
+<!--瀑布流控制方式-->
+    <script type="text/javascript">
+ 
+        /*
+            抛开瀑布流布局各种乱七八糟的算法，基于masonry的瀑布流，很是简单的，而且通过扩展animate,能实现瀑布流布局的晃动、弹球等效果。
+            masonry还有很多参数我这里注解了常用的参数
+         */
+        $(function(){
+            /*瀑布流开始*/
+            var container = $('.waterfull ul');
+            var loading=$('#imloading');
+            // 初始化loading状态
+            loading.data("on",true);
+            /*判断瀑布流最大布局宽度，最大为1200*/
+            function tores(){
+                var tmpWid=$(window).width();
+                if(tmpWid>1200){
+                    tmpWid=1200;
+                }else{
+                    var column=Math.floor(tmpWid/300);
+                    tmpWid=column*300;
+                }
+                $('.waterfull').width(tmpWid);
+ 
+            }
+            tores();
+            $(window).resize(function(){
+                tores();
+            });
+ 
+            container.imagesLoaded(function(){
+                container.masonry({
+                    columnWidth: 300,
+                    itemSelector : '.item',
+                    isFitWidth: true,//是否根据浏览器窗口大小自动适应默认false
+                    isAnimated: true,//是否采用jquery动画进行重拍版
+                    isRTL:false,//设置布局的排列方式，即：定位砖块时，是从左向右排列还是从右向左排列。默认值为false，即从左向右
+                    isResizable: true,//是否自动布局默认true
+                    animationOptions: {
+                        duration: 800,
+                        easing: 'easeInOutBack',//如果你引用了jQeasing这里就可以添加对应的动态动画效果，如果没引用删除这行，默认是匀速变化
+                        queue: false//是否队列，从一点填充瀑布流
+ 
+                    }
+ 
+                });
+ 
+            });
+ 
+            /*模拟从后台获取到的数据*/
+            var htmlSrc='__PUBLIC__/waterfall/';
+            var sqlJson=[];
+ 
+            /*本应该通过ajax从后台请求过来类似sqljson的数据然后，便利，进行填充，这里我们用sqlJson来模拟一下数据*/
+            var page = 1;
+            var totalNum = 0;
+            $(window).scroll(function(){
+ 
+                if(!loading.data("on")) return;
+ 
+                // 计算所有瀑布流块中距离顶部最大，进而在滚动条滚动时，来进行ajax请求，方法很多这里只列举最简单一种，最易理解一种
+                maxTop = 0;
+                var itemNum=$('#waterfull').find('.item').length;
+                if(itemNum > 2){
+                    var itemArr=[];
+                    itemArr[0]=$('#waterfull').find('.item').eq(itemNum-1).offset().top+$('#waterfull').find('.item').eq(itemNum-1)[0].offsetHeight;
+                    itemArr[1]=$('#waterfull').find('.item').eq(itemNum-2).offset().top+$('#waterfull').find('.item').eq(itemNum-1)[0].offsetHeight;
+                    itemArr[2]=$('#waterfull').find('.item').eq(itemNum-3).offset().top+$('#waterfull').find('.item').eq(itemNum-1)[0].offsetHeight;
+                    var maxTop=Math.max.apply(null,itemArr);
+                }
+                if(maxTop<$(window).height()+$(document).scrollTop()){
+                    //加载更多数据
+                    loading.data("on",false).fadeIn(800);
+                    if(totalNum && itemNum > totalNum){
+                        loading.text('就有这么多了！');
+                    }else{
+                        $.post(
+                                "{:U('getGoodsList')}",
+                                {page:page},
+                                function(data){
+                                    if(data.code == 1){
+                                        sqlJson = data.list;
+                                        appendData(sqlJson);
+                                        page++;
+                                    }else{
+                                        loading.data("on",true).fadeOut();
+                                        loading.text('就有这么多了！');
+                                    }
+                                },
+                                'json'
+                        );
+                    }
+                }
+            });
+            //流加载的请求
+            function appendData(sqlJson){
+                var html="";
+                for(var i in sqlJson){
+                    var published_date = sqlJson[i].published_date;//此处为数据的获取方式
+                    published_date = published_date.slice(0,10);//日期处理截取数据前10位
+                    html+="";//此处编译动态添加数据
+ 
+                }
+                //图片懒加载
+                $(html).find('img').each(function(index){
+                    loadImage($(this).attr('src'));
+                });
+                var $newElems = $(html).css({ opacity: 0}).appendTo(container);
+                $newElems.imagesLoaded(function(){
+                    $newElems.animate({ opacity: 1},800);
+                    container.masonry( 'appended', $newElems,true);
+                    loading.data("on",true).fadeOut();
+                });
+ 
+            }
+ 
+ 
+            //图片懒加载
+            function loadImage(url) {
+                var img = new Image();
+                //创建一个Image对象，实现图片的预下载
+                img.src = url;
+                if (img.complete) {
+                    return img.src;
+                }
+                img.onload = function () {
+                    return img.src;
+                }
+            }
+        })
+    </script>

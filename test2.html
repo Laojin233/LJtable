@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		
+		<span><img id="image1" src=""></span><input  onchange="changImg(event,'image1')" name="file"  type="file" class="file">
+
+		
+		<script type="text/javascript">
+			
+function changImg(e,name) {
+	console.log(e);
+    for (var i = 0; i < e.target.files.length; i++) {
+        var file = e.target.files.item(i);
+        
+        if (!(/^image\/.*$/i.test(file.type))) {
+            continue; //不是图片 就跳出这一次循环
+        }
+        //实例化FileReader API
+        var freader = new FileReader();
+        console.log(file)
+        freader.readAsDataURL(file);
+        freader.onload = function (e) {
+            console.log(e.target.result);
+            $("#image1").attr("src", e.target.result);
+        }
+    }
+}
+		</script>
+	</body>
+</html>

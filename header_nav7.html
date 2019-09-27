@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>导航栏7</title>
+			<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<style type="text/css">
+			:root{
+				--navHeight:90px;
+				--mainBGC:#202329
+			}
+			*{
+				padding: 0;
+				margin: 0;
+				border: 0;
+			}
+			.header{width: 100%;background:var(--mainBGC); 
+				box-shadow: 0 10px 8px rgba(6,0,1,.05);position: relative;
+			    /*box-shadow: 0 0 10px 8px #0CC;*/
+			    top:0;
+			    position:fixed;
+			    display: flex;
+			    z-index: 100;
+			    }
+			.header_nav{
+				    max-width: 1200px;
+				    min-width: 900px;
+				    /* width: 1100px; */
+				    margin: 0 auto;
+				    height: var(--navHeight)		   
+			}
+			
+			.header_nav .logo_box{
+				       float: left;
+					    height: var(--navHeight);
+					    padding-top: 20px;
+			}
+			.logo_box img{
+				height: 60px;
+    			border: 0;
+    			
+			}
+			.nav_menu{
+				/*background:url(img/111.jpg);*/
+				height: var(--navHeight);
+				justify-content: center;
+				max-width: 900px;
+				margin-left:30px;
+				display: inline-block;
+			}
+			.nav_menu ul{height: var(--navHeight); margin: 0;}
+			.nav_menu ul li{
+				
+				width: 70px;
+				margin-left: 15px;
+				height: 88px;
+				line-height: var(--navHeight);
+				color: #FFF;
+				text-align: center;
+				display: inline-block;
+				font-weight: 300;
+				cursor: pointer;
+			}
+			.nav_menu  .active{
+				background: url(img/111.jpg);
+				background-position: 0 0;
+				background-size: 77px;
+				border-radius: 5px;
+				border: 1px solid #202329;
+				color: #202329;
+				font-weight:600 ;
+			}
+			.nav_menu li:hover{
+			       /*border-radius: 70%;
+    				border: 10px solid var(--mainBCG);*/
+			    color: #19D6C0;
+			}
+			.nav_btn_list{
+				position: relative;
+				height: var(--navHeight);
+				line-height: var(--navHeight);
+				display: inline-block;
+				float: right;
+			}
+			.nav_btn_list .imgBox{
+				    position: relative;
+				    display: inline-block;
+				    cursor: pointer;
+				    height: 40px;
+				    margin-top: 12px;
+			}
+			.nav_btn_list:hover .nav_btn{
+				display: inline-block;
+			}
+			.nav_btn_list:hover .imgBox{
+				/*background: url(img/叉.png) no-repeat;
+				background-size: 70%;   */
+			}
+			/*.imgBox:hover .nav_btn{
+				display: inline-block;
+			}*/
+			.header_nav .nav_btn{				
+				width: 162px;
+			    height: var(--navHeight);
+			    /* display: inline-block; */
+			    position: absolute;
+			    display: none;
+			    float: right;
+			    background: #202329;
+			    top: 0px;
+			    left: -44px;
+			    color: #fff;
+			    
+							
+			}
+			.nav_btn input{
+					cursor: pointer;
+				    border-radius: 15px;
+				    text-align: center;
+				    font-size: 13px;
+				    height: 30px;
+				    box-shadow: 0 3px 6px 0 rgba(6,0,1,.05);
+				    line-height: 30px;
+				    padding: 0 9px 0 11px;
+				    min-width: 0;
+				    /*color: #19d6c0;*/
+				   -webkit-appearance: none;
+				    font-size: 1rem;
+				    text-shadow: none;
+				    line-height: 1.2;
+				    display: inline-block;
+				    position: relative;
+				    border-radius: 4px;
+				    border: 3px solid transparent;
+				    background: #444857;
+				    color: white;
+				    cursor: pointer;
+				    white-space: nowrap;
+				    text-overflow: ellipsis;
+				    text-decoration: none !important;
+				    text-align: center;
+				    font-weight: normal !important;
+			}
+			
+			#login-btn{background-color: #202329;color: #2DC1B7;}
+			#register-btn{background-color:#202329;color: #FFF;
+			/*border:1px solid #19D6C0;*/
+			}
+    
+    .main{
+    	background-color: #FFFFFF;
+    	/*background-color: #19D6C0;*/
+    	width: 100%;
+    	height: 1100px;
+    	/*background: var(--mainBGC);*/
+    	/*padding: 30px;*/
+    } 
+    .main-fix{
+    	margin-top:var(--navHeight) ;
+    }
+    .main_head{  	
+    	  	
+    }
+
+    
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<div class="header_nav">
+				<div class="logo_box">
+					<a href="#">						
+						<img src="img/logo_home_1.png"/>
+					</a>
+				</div>
+				<div class="nav_menu">
+					<ul>
+						<li class="active">首页</li>
+						<li>职位</li>
+						<li>校园招聘</li>
+						<li>企业库</li>
+						<li>院校库</li>
+						<li id="other">其他
+							<div class="dropdown">
+								<a href="header_nav.html">导航栏1</a>
+								<a href="header_nav2.html">导航栏2</a>
+								<a href="header_nav3.html">导航栏3</a>
+								<a href="header_nav4.html">导航栏4</a>
+								<a href="header_nav5.html">导航栏5</a>
+								<a href="header_nav6.html">导航栏6</a>
+								<a href="header_nav7.html">导航栏7</a>
+								<a href="header_nav8.html">导航栏8</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="nav_btn_list">
+					<div class="imgBox">						
+						<img src="img/圈用户.png" style="height: 35px;"/>
+					</div>
+					<div class="nav_btn">
+							<input type="button" name="" id="login-btn" value="登录" />
+							丨
+							<input type="button" name="" id="register-btn" value="注册" />
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="main">
+			<div class="main-fix">				
+				<div class="main_head box-shadow-2">
+					 <div id="playBtn" class="circle" style="margin: 20px 0px 10px 20px;">
+			            <div class="circle_inner_play">
+			            </div>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

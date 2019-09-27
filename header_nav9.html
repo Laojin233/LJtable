@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>导航栏7</title>
+			<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<style type="text/css">
+			@base: #f938ab;
+
+		.box-shadow(@style, @c) when (iscolor(@c)) {
+		  -webkit-box-shadow: @style @c;
+		  box-shadow:         @style @c;
+		}
+		.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+		  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+		}
+		.box {
+		  color: saturate(@base, 5%);
+		  border-color: lighten(@base, 30%);
+		  div { .box-shadow(0 0 5px, 30%) }
+		}
+		    
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div class="header box">
+			<div class="header_nav">
+				<div class="logo_box">
+					<a href="#">						
+						<!--<img src="img/logo_home_1.png"/>-->
+					</a>
+				</div>
+				<div class="nav_menu">
+					<ul>
+						<li class="active">首页</li>
+						<li>职位</li>
+						<li>校园招聘</li>
+						<li>企业库</li>
+						<li>院校库</li>
+						<li id="other">其他
+							<div class="dropdown">
+								<a href="header_nav.html">导航栏1</a>
+								<a href="header_nav2.html">导航栏2</a>
+								<a href="header_nav3.html">导航栏3</a>
+								<a href="header_nav4.html">导航栏4</a>
+								<a href="header_nav5.html">导航栏5</a>
+								<a href="header_nav6.html">导航栏6</a>
+								<a href="header_nav7.html">导航栏7</a>
+								<a href="header_nav8.html">导航栏8</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="nav_btn_list">
+					<div class="imgBox">						
+						<img src="img/圈用户.png" style="height: 35px;"/>
+					</div>
+					<div class="nav_btn">
+							<input type="button" name="" id="login-btn" value="登录" />
+							丨
+							<input type="button" name="" id="register-btn" value="注册" />
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="main">
+			<div class="main-fix">				
+				<div class="main_head box-shadow-2">
+					 <div id="playBtn" class="circle" style="margin: 20px 0px 10px 20px;">
+			            <div class="circle_inner_play">
+			            </div>
+			        </div>
+				</div>
+			</div>
+		</div>
+		<div class="p20">
+		    <p>input的model值: {{testValue}}</p>
+		    <p>实际input展现出来的值:
+		        <input ngc-model-test type="text" ng-model="testValue" class="input-cfec">
+		    </p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var ngUM = angular.module('ngc.umeditor', []);
+
+    ngUM.directive('ngcModelTest', function() {
+        return {
+            restrict: 'A',
+            require: '?ngModel',
+            scope: {
+                ngModel: '=',
+            },
+            link: function(scope, element, attr, ngModel) {
+
+                // 获取model值 ngModel.$viewValue
+                // 设置model值 ngModel.$setViewValue('')
+
+                // 获取dom值 element.val()
+                // 设置dom值 element.val('')
+
+                element.on('click', function(event) {
+                    // action1();
+                    // action2();
+                    // action3();
+                    // action4();
+                    // action5();
+                });
+
+                function action1() {
+                    element.val('1');
+                    // 结果 
+                    // input的model值: test
+                    // 实际input展现出来的值: 1
+                    // 结论
+                    // 不仅model值没有变化，ngModel的$viewValue和$modelValue同样也没有变化
+                    // input的value值不一定等于$viewValue
+                }
+
+                function action2() {
+                    ngModel.$setViewValue('2');
+                    // 结果 
+                    // input的model值: 2
+                    // 实际input展现出来的值: test
+                    // 结论
+                    // 执行完$setViewValue之后，无论是viewValue和modelValue都是已经同步了，
+                    // 但是input里面的值却依然是test
+                    // $viewValue和DOM节点的value是不同的
+                }
+
+                function action3() {
+                    element.val('3');
+                    ngModel.$render();
+                    // 结果 
+                    // input的model值: test
+                    // 实际input展现出来的值: test
+                    // 结论
+                    // 通过dom赋值了3 ，但没有改变model 所以model的值还是 test
+                    // 但是 $render 又把 model 重新赋值搭配 dom 里面
+                    // 所以input里面的值却依然是test
+                }
+
+                function action4() {
+                    ngModel.$setViewValue('4');
+                    ngModel.$render();
+                    // 结果 
+                    // input的model值: 4
+                    // 实际input展现出来的值: 4
+                    // 结论
+                    // 通过model赋值了 4  ，然后把model的值通过 $render() 赋值到dom里面
+                    // 所以input里面的值为 4
+                }
+
+                // 看看 $render的源码
+                /*
+                    ngModel.$render = function() {
+                        var value = ngModel.$isEmpty(ngModel.$viewValue) ? '' : ngModel.$viewValue;
+                        element.val(value);
+                    };
+                */
+                // 本质就是把 model 的值同步到 dom里面
+
+                // 最后 正确的同步赋值如下
+                // dom => model
+                function setModelValue() {
+                    var val = element.val();
+                    ngModel.$setViewValue(val);
+                }
+
+                function action5() {
+                    element.val('5');
+                    scope.$apply(setModelValue);
+                    // 把dom 的值同步到 model 里面
+                }
+
+                // model => dom
+
+                // 一般都是重写 $render，不如以前编辑器里面的同步
+                /*
+                    ngModel.$render = function() {
+                        _initContent = (ctrl.$isEmpty(ctrl.$viewValue) ? "" : ctrl.$viewValue);
+                        // 拿到model进行dom赋值操作
+                        if (_initContent && editor && _editorReady) {
+                            editor.setContent(_initContent);
+                        }
+                    };
+                */
+
+            }
+        }
+    })
+</script>

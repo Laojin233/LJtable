@@ -1,0 +1,375 @@
+<style type="text/css">
+	/*-------弹出层-------*/
+	/*body .layer-dudu-class{background: #92dcd8;color: #fff;}*/
+	html{color:#000;background:#FFF;}   
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,   
+fieldset,input,textarea,p,blockquote,th,td {   
+margin:0;   
+padding:0;   
+}   
+table{   
+border-collapse:collapse;   
+border-spacing:0;   
+}   
+fieldset,img {   
+border:0;   
+}   
+address,caption,cite,code,dfn,em,strong,th,var {   
+font-style:normal;   
+font-weight:normal;   
+}   
+ol,ul {   
+list-style:none;   
+}   
+caption,th {   
+text-align:left;   
+}   
+h1,h2,h3,h4,h5,h6 {   
+font-size:100%;   
+font-weight:normal;   
+}   
+q:before,q:after {   
+content:'';   
+}   
+abbr,acronym { border:0;   
+}   
+@charset "utf-8";  
+*{  
+    margin: 0px;  
+    padding: 0px;  
+      
+}   
+a{  
+    text-decoration: none;  
+    color: #000000;  
+    font-size:15px;  
+    /*字体*/  
+}  
+li{  
+    list-style: none;  
+}  
+input,img{  
+    border: none;  
+}  
+/*--------------------------*/
+	body a {
+		text-decoration: none;
+		color: #2dc1b7;
+		font-size: 16px;
+	}
+	/*layer-body滚动条样式*/
+	body::-webkit-scrollbar {
+		width: 5px;
+		height: 5px;
+		background-color: transparent;
+	}
+	
+	body::-webkit-scrollbar-thumb {
+	background: #ccc;
+	}
+	
+	body:hover::-webkit-scrollbar-thumb {
+		background: #ccc;
+		border-radius: 10px;
+	}
+	
+	body .layui-container {
+		color: #000
+	}
+	
+	body .layui-container img {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		left: 0;
+	}
+	body .layer-title {
+		width: 100%;
+		padding: 3vh 0;
+		font-size: 18px;
+		font-weight: 600;
+		text-align: center;
+		background: #81e0d5;
+		color: #497660;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+	
+	body .com_info {
+		font-size: 14px;
+		font-family: MicrosoftYaHei;
+		font-weight: 400;
+		color: rgba(51, 51, 51, 1);
+		line-height: 26px;
+		padding-left: 10px;
+		margin-top: 79px;
+	}
+	
+	body h3,.com_info .com_name {
+		color: #00867c;
+	    font-size: 18px;
+	    font-weight: bold;
+	    border-left: 2px solid;
+    	padding-left: 5px
+	}
+	
+	body .layer-title img {
+		width: 326px;
+		/*0px;
+    	background-size: 200px;*/
+	}
+	
+	body .com_info .com_info-box {}
+	
+	body .com_info .com_info-box .com_tag {
+		margin-top: 10px;
+	}
+	
+	body .com_info .com_info-box .com_tag span {
+		display: inline-block;
+		width: 61px;
+		height: 26px;
+		padding: 0 5px;
+		font-size: 12px;
+		line-height: 26px;
+		color: #00867c;
+		border: 1px solid #00867c;
+		border-radius: 3px;
+		text-align: center;
+		margin-right: 8px;
+		background: #fff;
+	}
+	
+	body .com_synopsis {
+		padding-top: 0px;
+		margin-top: 20px;
+	}
+	
+	body .com_info .title {
+		font-size: 18px;
+		font-family: MicrosoftYaHei;
+		font-weight: bold;
+		margin: 0px 10px 0 0;
+		padding: 0 0 0 4px;
+		border-bottom: 2px solid #00867c;
+		border-right: 2px solid #00867c;
+		width: 20px;
+		float: left;
+	}
+	body .com_synopsis-more,.com_synopsis-hide {float: right;position: relative;top: -31px;color: #009f95;cursor: pointer;width: 85px;background: #fff;}
+	
+	body #com_synopsis-hide {top: -26px;}
+	body .com_synopsis p {font-size: 14px;height: 110px;overflow: hidden;padding-right:10px;position: relative;text-align: justify;letter-spacing: .6px;margin: 0;}
+	
+	
+	body .jobWrap .jobsList {
+		border-bottom: 1px solid rgba(175, 222, 206, 1);
+		margin-top: 20px;
+		height: 80px;
+		font-size: 14px;
+		position: relative;
+	}
+	body .apply_jobs{
+		    width: 61px;
+		    line-height: 32px;
+		    padding: 0 10px 0 32px;
+		    font-size: 15px;
+		    height: 32px;
+		    background-color: #2dc1b7;
+		    background-image: url(img/117.png);
+		    background-repeat: no-repeat;
+		    background-position: 6px -211px;
+		    color: #FFFFFF;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+	}
+
+</style>
+<div class="layui-container">
+	<div class="layui-top">
+		<div class="layer-title">
+			招聘简章
+			<!--<img src="img/116.png"/>-->
+		</div>
+		<div class="com_info">
+			<div class="com_name">
+				广州市东洲装饰工程有限公司
+			</div>
+			<div class="com_info-box">
+				民营 | 建筑与工程 | 20-99人 | 广东/广州/天河区
+				<div class="com_tag">
+					<span> 环境好</span>
+					<span> 年终奖</span>
+					<span> 双休</span>
+					<span> 交通方便</span>
+					<span> 有提成</span>
+					<span> 有年假 </span>
+				</div>
+			</div>
+			<div class="com_synopsis">
+				<div class="title">公司简介</div>
+				<p id="synopsis">
+					本公司是欧派家居集团股份有限公司下属工程销售、设计、运输、安装、 售服分公司——广州市东洲装饰工程有限公司，欧派家居集团股份有限公司创立于1994年， 是中国家居知名品牌，拥有国际化家居产品制造基地。欧派以整体橱柜为龙头，带动相关产业发展 ，包括全屋定制、衣柜、卫浴、木门、墙饰壁纸、厨房电器、寝具等，形成多元化产业格局，是国 内综合型的现代整体家居一体化服务供应商，品牌运营已有二十载，有丰富的行业经验及成绩，欢 迎优秀的你加入我们的行列。
+				</p>
+				<div class="com_synopsis-more" id='com_synopsis-more' onclick="comsynMore()" style="display: block;">...更多</div>
+				<div class="com_synopsis-hide" id='com_synopsis-hide' onclick="comsynHide()" style="display: none;">收起</div>
+			</div>
+			<!--<div class="com_synopsis">
+			</div>-->
+		</div>
+	</div>
+	<div class="layui-main" style="padding:35px 10px 0 10px;">
+		<h3>招聘职位</h3>
+		<div class="jobWrap">
+			<div class="jobsList">
+				<div class="jobs fl">
+					<div class="title">
+						<a href="">装修现场监理 </a>
+						广东/广州/天河区
+					</div>
+					<div class="info">
+						<span class="salary">
+							3K-5K/月
+						</span> | 
+						<span class="education">
+							中技
+						</span> | 
+						<span class="jobsNum">
+							招1人
+						</span>
+					</div>
+				</div>
+				<div class="apply_jobs">申请职位</div>
+			</div>
+			<div class="jobsList">
+				<div class="jobs fl">
+					<div class="title">
+						<a href="">CAD绘图员家居定制</a>
+						广东/广州/天河区
+					</div>
+					<div class="info">
+						<span class="salary">
+							 3K-5K/月
+						</span>
+						<span class="education">
+							经验不限 / 大专
+						</span>
+						<span class="jobsNum">
+							招1人
+						</span>
+					</div>
+				</div>
+				<div class="apply_jobs">申请职位</div>
+			</div>
+			<div class="jobsList">
+				<div class="jobs fl">
+					<div class="title">
+						<a href="">CAD绘图员家居定制</a>
+						广东/广州/天河区
+					</div>
+					<div class="info">
+						<span class="salary">
+							 3K-5K/月
+						</span> | 
+						<span class="education">
+							经验不限 / 大专
+						</span> | 
+						<span class="jobsNum">
+							招1人
+						</span>
+					</div>
+				</div>
+					<div class="apply_jobs">申请职位</div>
+			</div>
+			<div class="jobsList">
+				<div class="jobs fl">
+					<div class="title">
+						<a href="">装修现场监理 </a>
+						广东/广州/天河区
+					</div>
+					<div class="info">
+						<span class="salary">
+							3K-5K/月
+						</span> | 
+						<span class="education">
+							中技
+						</span> | 
+						<span class="jobsNum">
+							招1人
+						</span>
+					</div>
+				</div>
+					<div class="apply_jobs">申请职位</div>
+			</div>
+			<div class="jobsList">
+				<div class="jobs fl">
+					<div class="title">
+						<a href="">CAD绘图员家居定制</a>
+						广东/广州/天河区
+					</div>
+					<div class="info">
+						<span class="salary">
+							 3K-5K/月
+						</span>
+						<span class="education">
+							经验不限 / 大专
+						</span>
+						<span class="jobsNum">
+							招1人
+						</span>
+					</div>
+				</div>
+					<div class="apply_jobs">申请职位</div>
+			</div>
+			<div class="jobsList">
+				<div class="jobs fl">
+					<div class="title">
+						<a href="">装修现场监理 </a>
+						广东/广州/天河区
+					</div>
+					<div class="info">
+						<span class="salary">
+							3K-5K/月
+						</span> | 
+						<span class="education">
+							中技
+						</span> | 
+						<span class="jobsNum">
+							招1人
+						</span>
+					</div>
+				</div>
+				<div class="apply_jobs">申请职位</div>
+			</div>
+		</div>
+	</div>
+	<img src="img/115.png" />
+</div>
+<script type="text/javascript">
+	function comsynMore() {
+		document.getElementById('synopsis').style.height = 'auto';
+		document.getElementById('com_synopsis-hide').style.display = 'block';
+		document.getElementById('com_synopsis-more').style.display = 'none';
+	}
+
+	function comsynHide() {
+		document.getElementById('synopsis').style.height = '110px';
+		document.getElementById('com_synopsis-hide').style.display = 'none';
+		document.getElementById('com_synopsis-more').style.display = 'block';
+	}
+	//  console.log(document.getElementById('synopsis'))
+	//  document.getElementById('synopsis').οnclick=function(){
+	//                  //.style.display = 'none';
+	//                     console.log('xx')
+	//                 // ps[this.index].style.display = 'block';
+	//              }
+	//  
+	//  $(".com_synopsis-hide").on('click',function(){
+	//  	$('#synopsis').attr('overflow','none')
+	//  })
+</script>
