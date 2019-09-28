@@ -7,6 +7,7 @@ $('.change_hall input').on('click',function(){
 		//点击 招聘大厅 按钮时			
 		$('.main_list-jobs').first().css('display','block')		
 		$('.main_list-person').first().css('display','none')
+		$('.change_hall').css("border-bottom","10px solid #e6f9f2")
 		$('.hall_company').first().addClass('change_active_c')
 		$('.hall_personal').first().addClass('change_active_b')
 		$('.hall_company').first().removeClass('change_active_a')

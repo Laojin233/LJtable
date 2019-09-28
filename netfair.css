@@ -246,8 +246,13 @@ body input:focus{
 	background-color: #92dcd8;
 	color:#00867c;
 }
-
-.item_info {position: relative;/*margin: 0px 6px 0 10px;*/text-align: left;background: url(img/bg3.png) no-repeat;background-size: 170px 31px;background-position: 15px 0;height: 220px;padding: 30px 15px 0 15px;}
+.item_info {position: relative;/*margin: 0px 6px 0 10px;*/text-align: left;
+/*background: url(img/bg3.png) no-repeat;
+background-size: 170px 31px;
+background-position: 15px 0;*/
+    background-size: 85% 31px;
+    background-position: 48% 0;
+height: 220px;padding: 30px 15px 0 15px;}
 .item_info a {color: #fff;padding: 4px 0;border-bottom: 1px dashed #d9efe5;display: block;width: 100%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .item_info span {float: right;}
 .item_info .item_title {width: 100%;height: 33px;/*background: #2DC1B7;margin-top: 23px;line-height: 41px;text-align: center;padding-left: 10px;color: #fff;font-size: 16px;font-weight: 600;text-shadow: 1px 1px #333;*/}
@@ -369,7 +374,6 @@ body input:focus{
 .item_functional .online-social-btn:hover{
 	/*background-color: #2DC1B7;*/
 	background-image: url(img/1233.png);
-    background-size: 27px;
 	}
 .item_functional .apply-jobs-btn:hover{
 	background-image: url(img/131.png);;
@@ -405,18 +409,7 @@ background-image: url(img/123.png);}
 .main_list-person .item_left .left_p_name{font-size: 16px;font-weight: bold;margin-top: 5px;}
 .main_list-person .item_right{width: 68%;text-align: left;padding-left: 10px;} 
 .main_list-person .item_right .right_tag{height: 66px;overflow: hidden;}
-.main_list-person .item_right .right_tag span{
-	    display: inline-block;
-    height: 24px;
-    cursor: pointer;
-    margin-top: 6px;
-    /* text-align: center; */
-    line-height: 23px;
-    font-size: 12px;
-    padding: 0 12px;
-    border: 1px solid #4caf50;
-    color: #4caf50;
-}
+.main_list-person .item_right .right_tag span{display: inline-block;height: 24px;cursor: pointer;margin-top: 6px;line-height: 23px;font-size: 12px;padding: 0 12px;border: 1px solid #4caf50;color: #4caf50;}
 .main_list-person .item_right .right_info{
 	line-height: 25px;
     height: 75px;
@@ -545,6 +538,7 @@ background-image: url(img/123.png);}
 }
 
 .search_input input {
+	cursor: auto;
 	border: 2px solid #fff;
 	height: 26px;
 	width: 230px;
