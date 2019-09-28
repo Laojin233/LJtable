@@ -112,7 +112,7 @@ body input:focus{
     width: 84%;
     float: right;
     text-align: left;
-    border-bottom: 10px solid #e6f9f2;
+    /*border-bottom: 10px solid #e6f9f2;*/
 }
 .change_hall img{
 	
@@ -140,7 +140,7 @@ body input:focus{
 }
 
 .change_hall .hall_personal:hover{
-  	background-color: #e6f9f2;
+  	background-color: #fafafa;
 }
 .change_hall .hall_company:hover{
 	background: #EAF4F8;
@@ -152,7 +152,7 @@ body input:focus{
 	background: #EAF4F8;
 }
 .change_active_b{
-	background: #E6F9F2;
+	background: #fafafa;
 }
 /*倒计时和信息板*/
 .line{
@@ -199,7 +199,7 @@ body input:focus{
 .container .main_right-fix {  }
 .container .main_right .main_list {/*max-width: 1340px;*/padding: 0;margin-left: 315px;text-align: center;}
 
-.main_list-jobs {}
+.main_list-jobs {padding-top: 40px;}
 .job_state {
 	display: none;
 	position: absolute;
@@ -230,17 +230,22 @@ body input:focus{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
+.main_list-jobs .main_list-jobs-fix{
+	background-color: #fafafa;
+}
 .main_list-jobs .item {
 	position: relative;
 	width: 18.7%;
 	max-width: 250px;
 	height: 400px;
 	margin-top: 10px;
-	margin-right: 10px;
+	margin-left: 10px;
 	float: left;
-	background: #e6f9f2;
+	background: #fff;
 	border-radius: 7px 7px 0 0;
+}
+.main_list-jobs .item:hover{
+	box-shadow: rgba(56,81,76,.12) 0 0 10px 0;
 }
 .main_list-jobs .item input:hover{
 	background-color: #92dcd8;
@@ -305,14 +310,13 @@ height: 220px;padding: 30px 15px 0 15px;}
 
 .item_functional .functional_bg{
 	position: relative;
-    /*left: 50%;*/
 }
 .item_functional .functional_bg .img_table{
         height: 80px;
-    position: absolute;
-    left: 10%;
-    width: 80%;
-    top: -30px;
+	    position: absolute;
+	    left: 10%;
+	    width: 80%;
+	    top: -30px;
 }
 .item_functional .functional_bg .img_boy, .img_girl {
    	width: 60px;
@@ -356,7 +360,7 @@ height: 220px;padding: 30px 15px 0 15px;}
 .item_functional .apply-jobs-btn{
 	/*width: 30%;*/
 	right: 18%;
-    background-image: url(img/130.png);
+    background-image: url(img/130-1.png);
     background-repeat: no-repeat;
     background-position: 21px 10px;
 }
@@ -387,7 +391,7 @@ background-image: url(img/123.png);}
 /*求职大厅(学生展示)*/
 .main_list-person{padding-top: 40px;}
 .main_list-person-fix{
-	min-width: 1200px;
+	min-width: 1129px;
 	background-color: #fff;
 	    margin-top: -10px;
 }
