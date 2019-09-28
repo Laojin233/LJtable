@@ -243,7 +243,7 @@ body input:focus{
 	border-radius: 7px 7px 0 0;
 }
 .main_list-jobs .item input:hover{
-	background: #92dcd8;
+	background-color: #92dcd8;
 	color:#00867c;
 }
 
@@ -295,7 +295,6 @@ body input:focus{
 /*招聘大厅-职位卡片-功能区*/
 .item_functional{
 	margin: 100px 0 0 0;
-    background-color: #000;
     position: relative;
 }
 
@@ -318,25 +317,15 @@ body input:focus{
 }
 .item_functional .functional_bg .img_boy{left: 21%;}
 .item_functional .functional_bg .img_girl{left: 50%;}
-.item_functional .functional_btn{position: relative;top: 0;width: 100%;height: 50px;background: #fffde7;}
+.item_functional .functional_btn{position: relative;top: 0;width: 100%;height: 50px;background: #fff;border:1px solid #e6f9f2;box-sizing: border-box;}
 .item_functional .functional_btn input {
-	background: #2DC1B7;
 	color: #fff;
 }
-.item_functional .functional_btn span{
-	width: 30%;
-    height: 30px;
-    font-size: 16px;
-    line-height: 30px;
-    display: block;
-    border-radius: 5px;
-    position: absolute;
-    top: 11px;
-    right: 35%;
-    text-align: center;
-    margin: 0;
+.item_functional .functional_btn div{
+	cursor: pointer;
 }
-#social-btn{
+.item_functional .social-btn{
+	background-color: #2DC1B7;
        width: 64px;
     height: 21px;
     text-align: center;
@@ -345,12 +334,50 @@ body input:focus{
     top: -25px;
     left: 51%;
 }
-#video-btn,#online-social-btn{width: 30px;text-align: center;height: 30px;border-radius: 5px;position: relative;top: 11px;background-color: #2DC1B7;background-repeat: no-repeat;background-position: 3px 3px;background-size: 24px;}
-#video-btn{left: 34%;background-image: url(img/124.png);}
-#video-btn:hover{background-color: #92dcd8;}
-#online-social-btn:hover{background-color: #92dcd8;}
-#online-social-btn{right: 34%;background-image: url(img/123.png);}
-.main_list-jobs .item .idly {background: #D1EDE2;color: #51A351;}
+.item_functional .video-btn,.item_functional .online-social-btn,.item_functional .apply-jobs-btn{width: 32px;
+	display: inline-block;
+    text-align: center;
+    border-radius: 5px;
+    /*height: 32px;
+    position: relative;
+    top: 11px;*/
+   	height: 100%;
+    width: 30%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 21px 10px;
+    background-size: 26px;
+ }
+.item_functional .apply-jobs-btn{
+	/*width: 30%;*/
+	right: 18%;
+    background-image: url(img/130.png);
+    background-repeat: no-repeat;
+    background-position: 21px 10px;
+}
+.item_functional .video-btn{left: 49%;
+    top: 11px;
+    background-image: url(img/124.png);
+    background-size: 27px;
+    /*background-position: 2px 1px;*/
+    }
+.item_functional .video-btn:hover{
+	/*background-color: #2DC1B7;*/
+	background-image: url(img/125.png);    
+	background-size: 27px;
+	}
+.item_functional .online-social-btn:hover{
+	/*background-color: #2DC1B7;*/
+	background-image: url(img/1233.png);
+    background-size: 27px;
+	}
+.item_functional .apply-jobs-btn:hover{
+	background-image: url(img/131.png);;
+}
+
+.item_functional .online-social-btn{right: 32%;
+background-image: url(img/123.png);}
+.main_list-jobs .item .idly {background: #92dcd8;color: #00867c;}
 .main_list-jobs .item .busy {background-color: #f7f1ba;color: #FFCC00;}
 .main_list-jobs .item .hot {background-color: #fbeeee;color: #ff0000;}
 /*求职大厅(学生展示)*/
@@ -403,11 +430,12 @@ body input:focus{
 	
 }
 .main_list-person .right_btn input{
-	    display: inline-block;
+	display: inline-block;
     height: 30px;
     width: 130px;
     border-radius: 30px;
-    background: #00BCD4;
+    /*background: #00BCD4;*/
+   background: #2DC1B7;
     cursor: pointer;
     margin-top: 8px;
     line-height: 30px;
@@ -415,7 +443,7 @@ body input:focus{
     color: #fff;
     font-size: 15px;
 }
-.main_list-person .right_btn input:hover{background:#7c89e2;}
+.main_list-person .right_btn input:hover{background:#92dcd8;}
 .main_list-person .item
 /*底部分页*/
 
@@ -425,6 +453,11 @@ body input:focus{
 	background-color: #fff;
 	border: 1px solid #eaeaea;
 }
+.main_list-page .active{
+	background:#2DC1B7;
+	color: #fff;
+	border: 1px solid #2DC1B7;
+}
 
 .main_list-page ul {
 	list-style: none;
@@ -432,19 +465,23 @@ body input:focus{
 	margin: 35px 0 30px 0;
 }
 
-.main_list-page ul li {
+.main_list-page li {
 	list-style: none;
 	cursor: pointer;
 	display: inline-block;
-	line-height: 30px;
+	line-height: 29px;
 	margin: 0 10px 10px 0;
 	padding: 0 10px;
 	background: #ebebeb;
+	border: 1px solid #ebebeb;
 	-webkit-transition: .2s;
 	-moz-transition: .2s;
 	transition: .2s;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
+}
+.main_list-page li:hover{
+	border: 1px solid #2DC1B7;
 }
 
 [clearfix] {

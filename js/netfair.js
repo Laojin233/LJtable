@@ -60,6 +60,7 @@ window.onload=function() {
 	layer.tips('点击此处可切换大厅','#hall_company',{
 		time:5000,
 		tips: [2, '#3595CC'],
+		tipsMore:true,
 //		cancel:true,
 //		shade: [0.1,'#fff'],
 //		style:'background-color:#09C1FF',
@@ -78,6 +79,40 @@ $('#hall_company').on('click', function(){
 	}else{ 
 	}
 });
+//小提示-3
+//规则tips
+var tip_index = 0;
+$(document).on('mouseenter', '.online-social-btn', function(){
+    tip_index=layer.tips("<span style='color:#000'>在线聊天！</span>", this, {
+        tips: [3, '#fff'],
+        area: ['auto', 'auto'],
+        tipsMore:true,
+        time: 10000
+    });
+}).on('mouseleave', '.online-social-btn', function(){
+    layer.close(tip_index);
+});
+$(document).on('mouseenter', '.video-btn', function(){
+    tip_index=layer.tips("<span style='color:#000'>视频沟通！</span>", this, {
+        tips: [3, '#fff'],
+        area: ['auto', 'auto'],
+        tipsMore:true,
+        time: 10000
+    });
+}).on('mouseleave', '.video-btn', function(){
+    layer.close(tip_index);
+});
+$(document).on('mouseenter', '.apply-jobs-btn', function(){
+    tip_index=layer.tips("<span style='color:#000'>投递简历！</span>", this, {
+        tips: [3, '#fff'],
+        area: ['auto', 'auto'],
+        tipsMore:true,
+        time: 10000
+    });
+}).on('mouseleave', '.apply-jobs-btn', function(){
+    layer.close(tip_index);
+});
+
 //查看会议须知
 $('.fair-info input').on('click', function() {
 	//弹出一个iframe层
