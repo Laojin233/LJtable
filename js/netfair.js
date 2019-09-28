@@ -153,6 +153,18 @@ $('.item_info_fix').on('click', function() {
 
 //--视频/语音邀请弹窗--//
 layer.ready(function() {
+	var _count=20
+	
+		
+	var _timer=setInterval(function(){
+		console.log(_count)
+		$('#video_overTime').text(_count)
+		if(_count==20){
+			console.log(document.getElementsByClassName('layui-layer-content'))
+			document.getElementsByClassName('layer_video_intive')[0].style.animation='doudong 0.5s infinite'
+		}
+		_count-=1;
+	},1000)
 	layer.open({
 	  type: 1,
 	  title: false,
@@ -162,22 +174,21 @@ layer.ready(function() {
 	  area: ['280px', 'auto'],
 	  offset: ['83%','80%'], //右下角弹出
 //	  offset:'auto',
-	  time: 100000, //2秒后自动关闭
-	  anim: 3,
+	  time: 20000, //20秒后自动关闭
+	  anim: 2,
 	  content:$('#layer_video_intive'),
 	  //content:'./iframe_invite.html',
-//	  end: function(){ //此处用于演示
-//	    layer.open({
-//	      type: 2,
-//	      title: '很多时候，我们想最大化看，比如像这个页面。',
-//	      shadeClose: true,
-//	      shade: false,
-//	      maxmin: true, //开启最大化最小化按钮
-//	      area: ['893px', '600px'],
-//	      content: $('#video_intive'),
-//	    });
-//	  }
-	});
+	  //当弹窗消失会发生的事
+	  end: function(){ 
+	  	clearInterval(_timer)
+}
+});
+document.getElementsByClassName('layer_video_intive')[0].onmouseover=function(){
+		this.style.animationPlayState='paused'
+	}
+document.getElementsByClassName('layer_video_intive')[0].onmouseout=function(){
+		this.style.animationPlayState=''
+	}//好蠢的办法
 //	layer.open({
 //		  type: 1,
 //		  title: false,
