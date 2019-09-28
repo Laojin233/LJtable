@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>网络招聘会</title>
-		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" charset="UTF-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts-en.common.js"></script>
-		<script src="js/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer-v3.1.1/layer/layer.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" charset="utf-8" href="netfair.css" />
 	</head>
 
@@ -1142,8 +1142,113 @@
 			</div>
 		</div>
 		</div>
-		<div id="layui-layer-move">
+		<style type="text/css">
+			body .layer_video_intive{
+				background:rgba(1,1,1,0.5); 
+			color:#fff; border: none;}
+			body .layer_video_info{
+				   background-color:rgba(0,0,0,0.8); 
+			}
+			body .layer_video_info .video_initiator{
+				    display: inline-block;
+				    float: left;
+				    width: 70%;
+				    height: 48px;
+				    padding: 12px 0 0 0;
+			}
+			body .layer_video_info span{
+				display: block;
+				font-size:16px;
+				max-width: 100px;
+				font-weight: 600;
+			}
+			body .layer_video_info .video_initiator_logo{
+				float: left;
+				margin: 5px;
+				display: inline-block;
+				width: 55px;
+				height: 55px;
+				border-radius:5px;
+			}
+			body .layer_video_btn span{
+				font-size: 12px;
+				/*display: inline-block;
+				float: left;*/
+			}
+			body .layer_video_btn_a,body .layer_video_btn_r{
+				    display: inline-block;
+				    float: left;
+	   			 	width: 66px;
+	   			 	text-align: center;
+	   			 	margin: 0 10px 0 10px;
+			}
+			body .layer_video_btn_r{
+				float: right;
+				margin: 0 10px 0 10px;
+			}
+			body .layer_video_timer{
+				display:inline-block;
+				/*float: left;*/
+				margin-top: 22px;
+				font-size: 12px;
+				padding: 2px;
+				border-radius:5px ;
+				background-color:rgba(1,1,1,0.5);
+			}
 
+			body #video_refuse,body #video_accept{
+				margin:10px 10px 1px 10px;
+				width: 46px;
+				height: 46px;
+				border-radius:50% ;
+				background-repeat: no-repeat;
+				background-size: 40px 40px;
+    			background-position: 3px 3px;
+				transition: all 0.3s;
+			}
+			body #video_accept{
+				background-color: #5FB878;
+				background-image: url(img/212.png);
+			}
+			body #video_refuse{
+				background-color: #f51202;
+				background-image: url(img/211.png);
+			}
+			body #video_accept:hover{
+				transform: scale(1.2);
+				background-image: url(img/212.png);
+			}
+			body #video_refuse:hover{
+				transform: scale(1.2);
+				background-image: url(img/211.png);
+			}
+		</style>
+		<div id="layer-move">
+
+		</div>
+		<div id="layer_video_intive" style="display: none">
+			<div class="layer_video_info" clearfix>
+				<img src="img/111.jpg" class="video_initiator_logo"/>
+				<div class="video_initiator">
+					<span class="cut_wrod">广州市东洲装饰工程有限公司</span>
+					邀请你进行视频聊天
+				</div>
+			</div>
+			<div class="layer_video_btn">
+				<div class="layer_video_btn_a">
+					<input type="button" name="" id="video_accept" value="" />
+					<span class="layer_video_text">接听</span>					
+				</div>
+				<span class="layer_video_timer" style="text-align: center;">20秒后自动挂断...</span>					
+				<div class="layer_video_btn_r">
+					<input type="button" name="" id="video_refuse" value="" />
+					<span class="layer_video_text">挂断</span>					
+				</div>
+
+			</div>
+		</div>
+		<div id="layer_text_intive" style="display: none">
+			<!--为在线聊天预留-->
 		</div>
 	</body>
 

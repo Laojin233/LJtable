@@ -57,7 +57,7 @@ $(function() {
 
 //--------------------弹出层----------------------//
 //小提示-1
-window.onload=function() {
+layer.ready(function() {
 	layer.tips('点击此处可切换大厅','#hall_company',{
 		time:5000,
 		tips: [2, '#3595CC'],
@@ -66,8 +66,7 @@ window.onload=function() {
 //		shade: [0.1,'#fff'],
 //		style:'background-color:#09C1FF',
 	});
-  
-}
+})
 //小提示-2
 var _is_tips1=0;
 $('#hall_company').on('click', function(){
@@ -151,9 +150,51 @@ $('.item_info_fix').on('click', function() {
 	});
 
 });
+
+//--视频/语音邀请弹窗--//
+layer.ready(function() {
+	layer.open({
+	  type: 1,
+	  title: false,
+	  closeBtn: 0, //不显示关闭按钮
+	  shade: false,
+	  skin:'layer_video_intive',
+	  area: ['280px', 'auto'],
+	  offset: ['83%','80%'], //右下角弹出
+//	  offset:'auto',
+	  time: 100000, //2秒后自动关闭
+	  anim: 3,
+	  content:$('#layer_video_intive'),
+	  //content:'./iframe_invite.html',
+//	  end: function(){ //此处用于演示
+//	    layer.open({
+//	      type: 2,
+//	      title: '很多时候，我们想最大化看，比如像这个页面。',
+//	      shadeClose: true,
+//	      shade: false,
+//	      maxmin: true, //开启最大化最小化按钮
+//	      area: ['893px', '600px'],
+//	      content: $('#video_intive'),
+//	    });
+//	  }
+	});
+//	layer.open({
+//		  type: 1,
+//		  title: false,
+//		  closeBtn: 0, //不显示关闭按钮
+//		  shade: false,
+//		  skin:'layer_video_intive',
+//		  area: ['300px', 'auto'],
+//		  offset: ['75%','80%'], //右下角弹出
+//		  time: 100000, //2秒后自动关闭
+//		  anim: 3,
+//		  content:$('#layer_text_intive'),
+//	})
+})
 //--------------------弹出层end----------------------//
 //		content: 'http://baidu.com' //通过超链接访问
 //		content: './iframe.html' //通过引入一个Html
+// 		content:'\<\div style="padding:20px;">自定义内容\<\/div>'
 //		content:$('#layui-layer-move')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
 //var initCode = $("#initCode").val();
 //      if(initCode == "0") {
