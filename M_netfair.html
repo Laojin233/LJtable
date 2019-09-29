@@ -2,8 +2,293 @@
 <html style="font-size: 55.2px !important;">
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<!--<meta name="viewport" content="width=device-width, initial-scale=0.5,user-scalable=no" />-->
+		<meta content="width=device-width,minimum-scale=0.5,maximum-scale=1.0,shrink-to-fit=no,user-scalable=no,minimal-ui" name="viewport">
+		<title>网络招聘会</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="js/layer-v3.1.1/layer/layer.js" type="text/javascript"></script>
+			<script src="js/iscroll-lite.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/M_netfair.css"/>
 	</head>
 	<body>
+		<div class="header_nav-fix">
+			<div class="header_nav font18">
+				<div class="title">					
+					<div class="n-tit-box">网络招聘会</div>
+					<div class="return"></div>
+					<div class="rbtn"></div>
+				</div>
+			</div>
+		</div>
+		<canvas id="indexCanvas" class="index_canvas" width="100%" height="100%"></canvas>
+		<div class="banner">
+			<div class="banner_img">
+				
+			</div>
+			<div class="banner_info">
+							<div class="timer cut_wrod">
+									还剩<span>1</span>天<span>7</span>小时
+							</div>
+							<div class="fair-info">
+								<div><div class="title">主办:</div><span>广州南洋理工职业学院</span></div>
+								<div><div class="title">承办:</div><span>嘟嘟校招网</span></div>
+								<div>
+								
+								<div><div class="title">规模:</div><span>参会企业100家 | 岗位900个  | 2019个求职者</span></div>
+								<div class="title">时间:</div><span>2019-09-10 09:00 至 2019-09-12 17:00 </span></div>
+								<!--<input type="button" value="点击查看会议须知">-->
+								<div class="fair-more">更多详情></div>
+							</div>
+							<div class="fair-info-details" style="display: none;">
+								<div>
+									<div class="title">主办:</div><span>广州南洋理工职业学院</span></div>
+								<div>
+									<div class="title">承办:</div><span>嘟嘟校招网</span></div>
+								<div>
+									<div class="title">协办:</div><span>嘟嘟校招网</span></div>
+								<div>
+									<div class="title">时间:</div><span>2019-09-10 09:00 至 2019-09-12 17:00 </span></div>
+								<div>
+									<div class="title">规模:</div><span>参会企业40家</span></div>
+								<div>
+									<div class="title">层次:</div><span>高职 大专 本科</span></div>
+								<div>
+									<div class="title">特色:</div><span>综合类</span></div>
+								<input type="button" value="点击查看会议须知">
+							</div>
+						</div>
+		</div>	
+		<div class="main">
+					<div class="main-fix">
+						<div class="main_list ">
+							<div class="change_hall">
+								<input type="button" class="hall_personal change_active" name="" id="hall_personal" value="招聘大厅" />
+								<input type="button" class="hall_company" name="" id="hall_company" value="求职大厅" />
+							</div>
+							<div class="main_list-jobs " style="display: block;">
+								<div class="main_list-jobs-fix" clearfix>
+									<div class="item">
+										<div class="item_left">
+											<div class="com_logo">
+												<img src="img/111.jpg" class="com_logo-img"/>
+											</div>
+										</div>
+										<div class="item_right">
+											<div class="right_top">
+												<div class="com_info">
+													<div class="com_name cut_wrod"><span>广州市东洲装饰工程有限公司</span></div>
+													民营 | 建筑与工程 | 20-99人 <br/>
+													 广东/广州/天河区
+													<div class="com_tag">
+														<span> 环境好</span>
+														<span> 年终奖</span>
+														<span> 双休</span>
+														<span> 交通方便</span>
+														<span> 有提成</span>
+														<span> 有年假 </span>
+													</div>
+												</div>
+											</div>
+											<div class="right_bottom">
+												<div class="jobs_all">
+													热招:<span id="startJob">CAD绘图员家居定制</span>等10个职位
+												</div>
+												<a href=" ">
+														<p>销售专员</p><span>3k-4k</span></a>
+													<a href=" ">
+														<p>销售专员2</p><span>3k-4k</span></a>
+													<a href=" ">
+														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
+													<a href=" ">
+														<p>销售专员3</p><span>3k-4k</span></a>
+													<a href=" ">
+														<p>销售专员4</p><span>3k-4k</span></a>
+													<a href=" ">
+														<p>销售专员5</p><span>3k-4k</span></a>
+													<a href=" ">
+														<p>销售专员</p><span>3k-4k</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="main_list-person" style="display: none;">
+								<div class="main_list-person-fix" clearfix>
+
+									<div class="item ">
+										<div class="item_left">
+											<div class="left_p_logo">
+												<img class="lazy" src="img/girl_3.png" width="80px" height="80px" />
+											</div>
+											<div class="left_p_name">
+												陈小小
+											</div>
+										</div>
+										<div class="item_right">
+											<div class="right_tag">
+												<span>实习经验</span>
+												<span>有热情</span>
+												<span>成熟稳重</span>
+												<span>成熟稳重</span>
+											</div>
+											<div class="right_info">
+												<span>电子商务</span>
+												<span>2019届/大专</span>
+												<span>广州南洋理工职业学院</span>
+											</div>
+											<div class="right_btn">
+												<input type="button" name="" id="" value="发起聊天" />
+											</div>
+										</div>
+									</div>
+									<div class="item ">
+										<div class="item_left">
+											<div class="left_p_logo">
+												<img class="lazy" src="img/haibao.png" width="80px" height="80px" />
+											</div>
+											<div class="left_p_name">
+												陈大大
+											</div>
+										</div>
+										<div class="item_right">
+											<div class="right_tag">
+												<span>实习经验</span>
+												<span>有热情</span>
+												<span>成熟稳重</span>
+											</div>
+											<div class="right_info">
+												<span>电子商务</span>
+												<span>2019届/大专</span>
+												<span>广州南洋理工职业学院</span>
+											</div>
+											<div class="right_btn">
+												<input type="button" name="" id="" value="发起聊天" />
+											</div>
+										</div>
+									</div>
+									<div class="item ">
+										<div class="item_left">
+											<div class="left_p_logo">
+												<img class="lazy" src="img/111.jpg" width="80px" height="80px" />
+											</div>
+											<div class="left_p_name">
+												陈大小
+											</div>
+										</div>
+										<div class="item_right">
+											<div class="right_tag">
+												<span>实习经验</span>
+												<span>有热情</span>
+												<span>成熟稳重</span>
+											</div>
+											<div class="right_info">
+												<span>电子商务</span>
+												<span>2019届/大专</span>
+												<span>广州南洋理工职业学院</span>
+											</div>
+											<div class="right_btn">
+												<input type="button" name="" id="" value="发起聊天" />
+											</div>
+										</div>
+									</div>
+									<div class="item ">
+										<div class="item_left">
+											<div class="left_p_logo">
+												<img class="lazy" src="img/gongao.png" width="80px" height="80px" />
+											</div>
+											<div class="left_p_name">
+												陈小大
+											</div>
+										</div>
+										<div class="item_right">
+											<div class="right_tag">
+												<span>实习经验</span>
+												<span>有热情</span>
+												<span>成熟稳重</span>
+											</div>
+											<div class="right_info">
+												<span>电子商务</span>
+												<span>2019届/大专</span>
+												<span>广州南洋理工职业学院</span>
+											</div>
+											<div class="right_btn">
+												<input type="button" name="" id="" value="发起聊天" />
+											</div>
+										</div>
+									</div>
+									<div class="item ">
+										<div class="item_left">
+											<div class="left_p_logo">
+												<img class="lazy" src="img/huojian.png" width="80px" height="80px" />
+											</div>
+											<div class="left_p_name">
+												陈大大
+											</div>
+										</div>
+										<div class="item_right">
+											<div class="right_tag">
+												<span>实习经验</span>
+												<span>有热情</span>
+												<span>成熟稳重</span>
+												<span>实习经验</span>
+												<span>有热情</span>
+											</div>
+											<div class="right_info">
+												<span>电子商务</span>
+												<span>2019届/大专</span>
+												<span>广州南洋理工职业学院</span>
+											</div>
+											<div class="right_btn">
+												<input type="button" name="" id="" value="发起聊天" />
+											</div>
+										</div>
+									</div>
+									<div class="item ">
+										<div class="item_left">
+											<div class="left_p_logo">
+												<img class="lazy" src="img/girl_3.png" width="80px" height="80px" />
+											</div>
+											<div class="left_p_name">
+												陈大大
+											</div>
+										</div>
+										<div class="item_right">
+											<div class="right_tag">
+												<span>实习经验</span>
+												<span>有热情</span>
+												<span>成熟稳重</span>
+												<span>实习经验</span>
+												<span>有热情</span>
+											</div>
+											<div class="right_info">
+												<span>电子商务</span>
+												<span>2019届/大专</span>
+												<span>广州南洋理工职业学院</span>
+											</div>
+											<div class="right_btn">
+												<input type="button" name="" id="" value="发起聊天" />
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="main_list-page">
+							<ul>
+								<li>上一页</li>
+								<li class="active">1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>下一页</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
 	</body>
+	<script src="js/M_netfair.js" type="text/javascript" charset="utf-8"></script>
+
 </html>

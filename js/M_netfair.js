@@ -1,31 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
-<style>
-	html,body{
-		height: 100%;
-		margin:0;
-		background: grey;
-	}
-	canvas{
-		width: 100%;
-		height: 100%;
-	}
-</style>
-<body>
-	<canvas id="canvas"></canvas>
-	<script>
-		var canvas = document.getElementById('canvas');
+//背景画布
+var canvas = document.getElementById('indexCanvas');
 		var ctx = canvas.getContext('2d');
 		var _width = canvas.width = canvas.offsetWidth;
 		var _height = canvas.height = canvas.offsetHeight;
-		var leftDot = rightDot = _height * 0.7  //起始点和终点高度
+		var leftDot = rightDot = _height * 0.5  //起始点和终点高度
 		var leftDotSpeed = 0.2;
 		var rightDotSpeed = 0.16;
 		var n = 0;
@@ -34,17 +12,6 @@
 																		window.webkitRequestAnimationFrame ||
 																		window.msRequestAnimationFrame;
 		run();
-		function drawSun(){
-        var color = ctx.createRadialGradient(_width/2,_height*0.6,1,_width/2,_height*0.8,600);
-        color.addColorStop(0,'red');
-				color.addColorStop(.2,'#fff');
-				color.addColorStop(0.5,'lightgrey');
-        color.addColorStop(1,'grey');
-				ctx.beginPath();
-				ctx.arc(_width/2, _height*0.8, 600, 0, 2*Math.PI);
-				ctx.fillStyle = color;
-				ctx.fill();
-    }
 		function drawWater(n,color, leftDot, rightDot){
 			var angle = n * Math.PI / 180;
 			var deltaHeight = Math.sin(angle) * _height / 8;
@@ -52,8 +19,8 @@
 			ctx.beginPath();
 			ctx.moveTo(0, leftDot);
 			ctx.bezierCurveTo(_width / 4, leftDot + deltaHeight, _width * 3 / 4, rightDot + deltaHeightRight, _width, rightDot);
-			ctx.lineTo(_width, _height);
-			ctx.lineTo(0, _height); //使得下半个矩形闭合
+			ctx.lineTo(_width,- _height);
+			ctx.lineTo(0, -_height); //使得下半个矩形闭合
 			ctx.fillStyle = color;
 			ctx.fill();
 		}
@@ -68,12 +35,20 @@
 			if(rightDot>_height*0.8 || rightDot<_height*0.6){
 				rightDotSpeed *= -1
 			}
-			drawSun()
-			drawWater(n+50,'lightcyan', leftDot, rightDot)
-			drawWater(n,'cyan', leftDot, rightDot)
+			drawWater(n+40,'#e6f9f2', leftDot, rightDot)
+			drawWater(n,'#92dcd8', leftDot, rightDot)
 			requestAnimationFrame(run);
 		}
-	</script>
-</body>
 
-</html>
+///
+//var myScroll = new IScroll('.main_list-jobs');
+
+///
+//		window.onload = function () {
+//      document.querySelector("#roll1").onclick = function () {
+//          document.querySelector("#roll_top").scrollIntoView(false);
+//      };
+//      document.querySelector("#roll2").onclick = function () {
+//          document.querySelector("#roll_top").scrollIntoView(true);
+//      };
+// }

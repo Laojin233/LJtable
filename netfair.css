@@ -146,25 +146,11 @@ body input:focus {
 	cursor: pointer;
 }
 
-.change_hall .hall_personal:hover {
-	background-color: #fafafa;
-}
-
-.change_hall .hall_company:hover {
-	background: #EAF4F8;
-}
-
-.change_active_c {
-	background: #fff;
-}
-
-.change_active_a {
-	background: #EAF4F8;
-}
-
-.change_active_b {
-	background: #fafafa;
-}
+.change_hall .hall_personal:hover {background-color: #fafafa;}
+.change_hall .hall_company:hover {background: #EAF4F8;}
+.change_active_c {background: #fff;}
+.change_active_a {background: #EAF4F8;}
+.change_active_b {background: #fafafa;}
 
 
 /*倒计时和信息板*/
