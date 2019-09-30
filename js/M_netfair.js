@@ -3,7 +3,7 @@ var canvas = document.getElementById('indexCanvas');
 		var ctx = canvas.getContext('2d');
 		var _width = canvas.width = canvas.offsetWidth;
 		var _height = canvas.height = canvas.offsetHeight;
-		var leftDot = rightDot = _height * 0.5  //起始点和终点高度
+		var leftDot = rightDot = _height * 0.7  //起始点和终点高度
 		var leftDotSpeed = 0.2;
 		var rightDotSpeed = 0.16;
 		var n = 0;
@@ -36,7 +36,8 @@ var canvas = document.getElementById('indexCanvas');
 				rightDotSpeed *= -1
 			}
 			drawWater(n+40,'#e6f9f2', leftDot, rightDot)
-			drawWater(n,'#92dcd8', leftDot, rightDot)
+//			drawWater(n,'#92dcd8', leftDot, rightDot)
+			drawWater(n,'#6083f7', leftDot, rightDot)
 			requestAnimationFrame(run);
 		}
 

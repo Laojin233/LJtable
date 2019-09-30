@@ -22,7 +22,7 @@
 						<div class="search_box" clearfix>
 							<div class="search_box-fix">
 								<div class="search_input">
-									<input type="text" name="" placeholder=" 输入期望的职位名称" id="" value="" />
+									<input type="text" name="key" placeholder=" 输入期望的职位名称" id="search_input"  value="" />
 								</div>
 								<div class="line"></div>
 								<input type="button" id="" class="search_btn" value="搜索" />
@@ -86,69 +86,9 @@
 						</div>
 						<div class="left_two">
 							<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-							<div class="data_table" style="border-radius: 5px">
+							<div class="data_table">
 								<div id="main_1" style=" "></div>
 							</div>
-							<script type="text/javascript">
-								var myChart = echarts.init(document.getElementById('main_1'));
-								myChart.borderRadius = 5,
-									option3 = {
-										backgroundColor: '#fff',
-										title: {
-											text: 'Customized Pie',
-											left: 'center',
-											top: 20,
-											textStyle: {
-												color: '#000'
-											}
-										},
-										xAxis: {
-											type: 'category',
-											boundaryGap: false,
-											data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-										},
-										yAxis: {
-											type: 'value'
-										},
-										grid: { left: '17%', },
-										visualMap: {
-											show: false,
-											min: 80,
-											max: 600,
-											inRange: {
-												colorLightness: [0, 1]
-											}
-										},
-										series: [{
-											name: '访问人数',
-											data: [820, 932, 901, 934, 1290, 1200, 1330].sort(function(a, b) { return a.value - b.value; }),
-											type: 'line',
-											symbol: 'triangle',
-											symbolSize: 20,
-											lineStyle: {
-												normal: {
-													color: '#92dcd8',
-													width: 4,
-													type: 'dashed'
-												}
-											},
-											itemStyle: {
-												normal: {
-													borderWidth: 2,
-													borderColor: '#fff',
-													color: '#00867c'
-												}
-											},
-											areaStyle: {}
-										}],
-										tooltip: {
-											trigger: 'item',
-											formatter: "{a} <br/>{b} : {c}"
-										},
-									}
-								// 使用刚指定的配置项和数据显示图表。
-								myChart.setOption(option3);
-							</script>
 						</div>
 						<div class="left_three">
 							<div class="AD_box">
@@ -190,7 +130,7 @@
 													<a href=" ">
 														<p>销售专员</p><span>3k-4k</span></a>
 													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
+														<p>销售专员2 </p><span>3k-4k</span></a>
 													<a href=" ">
 														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
 													<a href=" ">
@@ -1045,7 +985,7 @@
 									<div class="item ">
 										<div class="item_left">
 											<div class="left_p_logo">
-												<img class="lazy" src="img/gongao.png" width="80px" height="80px" />
+												<img class="lazy" src="img/直角三角形.png" width="80px" height="80px" />
 											</div>
 											<div class="left_p_name">
 												陈小大

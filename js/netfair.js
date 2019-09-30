@@ -11,6 +11,8 @@ $('.change_hall input').on('click', function() {
 		$('.hall_company').first().addClass('change_active_c')
 		$('.hall_personal').first().addClass('change_active_b')
 		$('.hall_company').first().removeClass('change_active_a')
+		//改变搜索栏说明
+		$('#search_input').attr('placeholder','输入期望的职位名称')
 	} else {
 		//点击 求职大厅 按钮时
 		$('.main_list-jobs').first().css('display', 'none')
@@ -19,6 +21,7 @@ $('.change_hall input').on('click', function() {
 		$('.hall_company').first().addClass('change_active_a')
 		$('.hall_personal').first().removeClass('change_active_b')
 		$('.hall_personal').first().addClass('change_active_c')
+		$('#search_input').attr('placeholder','输入想要查看的专业或求职者名称')
 	}
 
 })
@@ -109,16 +112,14 @@ $(document).on('mouseenter', '.apply-jobs-btn', function() {
 	layer.close(tip_index);
 });
 
-//查看会议须知
+//---查看会议须知
 $('.fair-info input').on('click', function() {
 	//弹出一个iframe层
 	layer.open({
 		type: 2,
 		title: false,
-		//maxmin: true,
 		shadeClose: true, //点击遮罩关闭层
 		area: ['600px', '500px'],
-		// content: '\<\div style="padding:20px;">自定义内容\<\/div>',
 		content: './iframe_notice.html',
 		//		content:'http://baidu.com',
 		//style: 'background-color:#09C1FF; color:#fff; border:none;',
@@ -128,7 +129,7 @@ $('.fair-info input').on('click', function() {
 
 });
 
-//招聘简章
+//---招聘简章
 $('.item_info_fix').on('click', function() {
 	//弹出一个iframe层
 	layer.open({
@@ -137,10 +138,7 @@ $('.item_info_fix').on('click', function() {
 		//maxmin: true,
 		shadeClose: true, //点击遮罩关闭层
 		area: ['580px', '750px'],
-		// content: '\<\div style="padding:20px;">自定义内容\<\/div>',
 		content: './iframe.html',
-		//		content:'http://baidu.com',
-		//style: 'background-color:#09C1FF; color:#fff; border:none;',
 		skin: 'layer-dudu-class',
 
 	});
@@ -148,9 +146,19 @@ $('.item_info_fix').on('click', function() {
 });
 
 //--视频/语音邀请弹窗--//
-layer.ready(function() {
-	var _count = 20
+//调用 videoPopup() 出现弹窗
+layer.ready(videoPopup())
 
+$('#video_accept').onclick=function(){
+	//这是视频邀请的  接听  按钮
+}
+	
+$('#video_refuse').onclick=function(){
+	//这是视频邀请的  挂断  按钮
+}
+
+function videoPopup() {
+	var _count = 20
 	var _timer = setInterval(function() {
 		console.log(_count)
 		$('#video_overTime').text(_count)
@@ -168,11 +176,9 @@ layer.ready(function() {
 		skin: 'layer_video_intive',
 		area: ['280px', 'auto'],
 		offset: ['83%', '80%'], //右下角弹出
-//		offset:'auto',
 		time: 20000, //20秒后自动关闭
 		anim: 2,
 		content: $('#layer_video_intive'),
-		//content:'./iframe_invite.html',
 		//当弹窗消失会发生的事
 		end: function() {
 			clearInterval(_timer)
@@ -185,114 +191,16 @@ layer.ready(function() {
 	document.getElementsByClassName('layer_video_intive')[0].onmouseout = function() {
 		this.style.animationPlayState = ''
 	} //好蠢的办法
-
-	//	layer.open({
-	//		  type: 1,
-	//		  title: false,
-	//		  closeBtn: 0, //不显示关闭按钮
-	//		  shade: false,
-	//		  skin:'layer_video_intive',
-	//		  area: ['300px', 'auto'],
-	//		  offset: ['75%','80%'], //右下角弹出
-	//		  time: 100000, //2秒后自动关闭
-	//		  anim: 3,
-	//		  content:$('#layer_text_intive'),
-	//	})
-})
-//--------------------弹出层end----------------------//
+}
 //		content: 'http://baidu.com' //通过超链接访问
 //		content: './iframe.html' //通过引入一个Html
 // 		content:'\<\div style="padding:20px;">自定义内容\<\/div>'
 //		content:$('#layui-layer-move')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-//var initCode = $("#initCode").val();
-//      if(initCode == "0") {
-//          console.log($("#initMsg").val());
-//      }
 //
-//      var alertId = $("#alertId").val();
-//      var loginType = $("#loginType").val();
-//      var mId = $("#meetingId").val();
-//      if (alertId == "appointmentMeeting" && loginType == "3") {
-//      	var loginUserId = $("#loginUserId").val();
-//      	$.ajax({
-//              type: 'post',
-//              data: {'eId':loginUserId, 'mId':mId},
-//              dataType: 'json',
-//              url: '/schoolreception/cloudCompany/queryReserve',
-//              success: function (data) {
-//                  if (data.code == 200) {
-//                  	if (data.body) {
-//                  		appointmentMeeting(mId,false,'company');
-//                      	$("#alertId").val("");
-//                  	}
-//                  }
-//              }
-//          });
-//      }
-// 
-// function showLayuiOpen(url, width, height, classname) {
-//          layer.open({
-//              type: 2,
-//              title: false,
-//              area: [width, height],
-//              fixed: false, //不固定
-//              content: url,
-//              maxmin: false,
-//              resize: false,
-//              skin: classname
-//          });
-//      }
+//--------------------弹出层end----------------------//
 
-//$('.more-btn input').on('click', function() {
-//	//弹出一个iframe层
-//	layer.open({
-//		type: 2,
-//		title: false,											      
-//		//maxmin: true,
-//		shadeClose: true, //点击遮罩关闭层
-//		area: ['550px', '750px'],
-////		 content: 'http://baidu.com' //
-//	});
-//
-//});
 
-//弹出一个页面层
-$('#test2').on('click', function() {
-
-});
-
-//弹出一个loading层
-$('#test4').on('click', function() {
-	var ii = layer.load();
-	//此处用setTimeout演示ajax的回调
-	setTimeout(function() {
-		layer.close(ii);
-	}, 1000);
-});
-
-//弹出一个tips层
-$('#test5').on('click', function() {
-	layer.tips('Hello tips!', '#test5');
-});
-
-//滚动公告
-//console.log($('#realtime_data span').length)
-//	var _rightValue=-70;
-//for (i=0;i<$('#realtime_data span').length;i++) {
-//	var str="#realtime_data span:eq("+i+")"
-//	var item=$(str)
-//	console.log(item.text())
-//	item.css('right',_rightValue-=30)
-//}
-
-function noticeUp(obj, value, time) {
-	$(obj).animate({
-		right: value
-	}, time, function() {
-		$(this).css({ right: "-1050px" }).appendTo(this);
-	})
-};
-//滚动公告
+//-----滚动公告
 var _d = -1050
 $(function() {
 	// 调用 公告滚动函数
@@ -304,3 +212,72 @@ $(function() {
 		}
 	}, 1000 / 30);
 });
+
+////图表配置**
+  var myDate = new Date;
+  var year = myDate.getFullYear(); //获取当前年
+  var mon = myDate.getMonth() + 1; //获取当前月
+  var date = myDate.getDate()
+var myChart = echarts.init(document.getElementById('main_1'));
+var Chart_title=year + "年" + mon + "月" + date + "日"+'-实时数据'
+option3 = {
+	title:{
+		text:Chart_title,
+		left: 'center',
+		top: 20,
+		textStyle: {
+			color: '#607d8b'
+		}
+	},
+	tooltip: {
+		trigger: 'axis',
+		axisPointer: { // 坐标轴指示器，坐标轴触发有效
+			type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+		}
+	},
+	grid: {
+		left: '0',
+		right: '1%',
+		bottom: '3%',
+		containLabel: true
+	},
+	xAxis: {
+		type: 'value',
+		splitNumber: 6,
+	},
+	yAxis: {
+		type: 'category',
+		data: ['面试邀请','参会企业', '在线企业', '在线人数', '求职人数']
+	},
+	series: [
+		{
+			//name: '求职人数',
+			type: 'bar',
+			stack: '总量',
+			label: {
+				normal: {
+					show: true,
+					position: 'insideRight'
+				}
+			},
+			  itemStyle: {   
+                //通常情况下：
+                normal:{  
+                     color: function (params){
+                        var colorList = ['rgb(255,88,88)','rgb(42,170,227)','rgb(25,46,94)','#2dc1b7','#92dcd8'];
+                        return colorList[params.dataIndex];
+                    }
+                },
+                //鼠标悬停时：
+                emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+           }, 
+			data: [100, 258, 80, 1001, 2019,]
+		}	
+	]
+}
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option3);

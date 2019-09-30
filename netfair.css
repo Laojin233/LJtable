@@ -255,26 +255,25 @@ body input:focus {
 }
 
 .container .main_left .left_two .data_table {
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, .1);
 	height: 300px;
-	border: 1px solid #ccc;
 	padding: 4px;
 }
 
 #main_1 {
 	height: 300px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+	/*border-radius: 5px 5px 0 0;*/
 }
 
 #main_1 canvas {
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 }
 
 
 /*左侧广告位*/
 
 .container .left_three {
-	margin-top: 100px;
+	/*margin-top: 100px;*/
 }
 
 .container .left_three a {
@@ -288,7 +287,7 @@ body input:focus {
 
 .container .left_three .AD_box .AD_two,
 .left_three .AD_box .AD_one {
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 	padding-right: 2px;
 	padding-bottom: 2px;
 	vertical-align: top;

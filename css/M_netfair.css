@@ -98,17 +98,25 @@ p{font-size: 1.5em;}
 /*div：position=absolute，height=100%，overflow-y=auto*/
 
 .banner {
-	height: 2.5rem;
-	overflow: hidden;
-	padding: .1rem 0;/*text-align: center;*/
+	/*height: 2.5rem;*/
+	/*overflow: hidden;*/
+	/*text-align: center;*/
+}
+.banner .banner_img{
+	    width: 100%;
+    height: 2.4rem;
+    background-image: url(../img/banner1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 2.9rem;
 }
 .banner .banner_info{
 	    width: 94%;
-    margin: 0 auto;
+    margin: .1rem auto;
     text-align: left;
     background: #fff;
     border-radius: 5px;
-    height: 90%;
+    height: 2.1rem;
+    z-index: 1;
     position: relative;
     padding: 1em;
 }
@@ -175,9 +183,10 @@ p{font-size: 1.5em;}
 }
 
 .main{
-	
+	/*width: 100%;*/
 	margin: 0 2%;
-    background: #e6f9f2;
+    /*background: #e6f9f2;*/
+    background-color: rgba(230, 249, 242, 0.5);;
     padding: .1rem;
 	position: relative;
     overflow-y:auto;}
@@ -238,7 +247,7 @@ p{font-size: 1.5em;}
     /* margin-left: 10px; */
     /*float: left;*/
     background: #fff;
-    border-radius: 7px 7px 0 0;
+    border-radius: 7px;
 }
 
 .main_list-jobs .item:hover {
@@ -256,6 +265,7 @@ p{font-size: 1.5em;}
     width: 26%;
     float: left;
 }
+
 .main_list-jobs .item_left .com_logo{
 	 width: 100%;
     padding-right: 10px;
@@ -264,6 +274,14 @@ p{font-size: 1.5em;}
 	width: 100%;
 	height: 21vw;
 }
+.main_list-jobs .status_online,.main_list-jobs .status_outline{
+	color: #fff;
+    text-align: left;
+    z-index: 2;
+    border-radius: 0 5vh 5vh 0;
+    font-size: 0.7em;position: absolute;left: 0;top: 54%;padding: 0 1em 0 0.5em;height: 1.6em;line-height: 1.6em;}
+.main_list-jobs .status_online{	background-color: #2DC1B7;}
+.main_list-jobs .status_outline{background-color: #fefefe;}
 .main_list-jobs .item_right {
 	    position: relative;
     /* margin: 0px 6px 0 10px; */
@@ -271,7 +289,7 @@ p{font-size: 1.5em;}
     /* float: left; */
     background-size: 85% 31px;
     background-position: 48% 0;
-    height: 220px;
+    /*height: 220px;*/
     width: 74%;
     display: inline-block;
     padding: 0.6em;
@@ -280,13 +298,15 @@ p{font-size: 1.5em;}
 }
 .main_list-jobs .item_right a {
 	color: #000;
-	padding: 4px 0;
-	border-bottom: 1px dashed #d9efe5;
-	display: inline-block;
-	width: 30%;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    padding: 4px 0;
+    border-bottom: 1px dashed #d9efe5;
+    display: inline-block;
+    width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: .1rem;
+    text-decoration: none;
 }
 
 
@@ -306,10 +326,12 @@ p{font-size: 1.5em;}
 .main_list-jobs .right_top .com_tag{
 		margin-top: 0.7em;
     white-space: nowrap;
-    width: 101%;
-    overflow: hidden;
+    width: 100%;
+    overflow: scroll;
 }
-	
+.main_list-jobs .com_tag::-webkit-scrollbar {
+    display: none;
+}
 .main_list-jobs .right_top .com_tag span {
 		display: inline-block;
     /* width: 61px; */
@@ -326,82 +348,32 @@ p{font-size: 1.5em;}
 	}
 
 .main_list-jobs .item_right .right_bottom{
-	height: 2rem;
+	height: 1.5rem;
 	/*height: 200px;*/
 	overflow: hidden;
 }
 .main_list-jobs .right_bottom span {
-	float: right;
+	/*float: right;*/
 }
 .right_bottom .jobs_all{
-	position: absolute;
-    bottom: 0;
+	    position: absolute;
+    bottom: -0.8em;
     white-space: nowrap;
+    border-top: 1px solid #d9efe5;
+    padding: 0.1em 0;
+    width: 100%;
 }
-#startJob{
-	    float: none;
-    color: #2dc1b7;
-}
-.item_right .item_info_fix {
-	cursor: pointer;
-	width: 100%;
-	height: 280px;
-	background: #92dcd8;
-}
+#startJob{color: #2DC1B7;}
+.right_bottom input{
+	    background-color: #2dc1b7;
+    color: #fff;
+    width: 50%;
+    font-size: 1.4em;
+    border-radius: 5px;
+    margin: 0.2em 25%;
+    }
 
-.item_right .item_info_box {
-	height: 160px;
-	padding: 0 10px;
-	overflow: hidden;
-}
 
-.item_right .item_info_box a p {
-	display: inline-block;
-	width: 95px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	margin: 0;
-}
-/*列表底部分页*/
-.main_list-page {
-	height: 70px;
-	margin: 0 auto;
-	background-color: #fff;
-	border: 1px solid #eaeaea;
-}
-
-.main_list-page .active {
-	background: #2DC1B7;
-	color: #fff;
-	border: 1px solid #2DC1B7;
-}
-
-.main_list-page ul {
-	list-style: none;
-	text-align: center;
-	margin: 35px 0 30px 0;
-}
-
-.main_list-page li {
-	list-style: none;
-	cursor: pointer;
-	display: inline-block;
-	line-height: 29px;
-	margin: 0 10px 10px 0;
-	padding: 0 10px;
-	background: #ebebeb;
-	border: 1px solid #ebebeb;
-	-webkit-transition: .2s;
-	-moz-transition: .2s;
-	transition: .2s;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-}
-
-.main_list-page li:hover {
-	border: 1px solid #2DC1B7;
-}
 
 /*招聘大厅-职位卡片-功能区*/
 
