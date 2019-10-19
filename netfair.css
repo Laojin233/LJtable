@@ -1,6 +1,9 @@
 * {
 	margin: 0;
 	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
 }
 
 
@@ -9,6 +12,10 @@
 			 黄：	#F89406
 			 绿： 	#51A351
 			 * */
+
+html {
+	-ms-touch-action: none;
+}
 
 body {
 	margin: 0;
@@ -19,6 +26,7 @@ body {
 	word-wrap: break-word;
 	-webkit-font-smoothing: antialiased;
 	background-color: #fff;
+	/*overflow: hidden;*/
 }
 
 body a {
@@ -146,11 +154,25 @@ body input:focus {
 	cursor: pointer;
 }
 
-.change_hall .hall_personal:hover {background-color: #fafafa;}
-.change_hall .hall_company:hover {background: #EAF4F8;}
-.change_active_c {background: #fff;}
-.change_active_a {background: #EAF4F8;}
-.change_active_b {background: #fafafa;}
+.change_hall .hall_personal:hover {
+	background-color: #fafafa;
+}
+
+.change_hall .hall_company:hover {
+	background: #EAF4F8;
+}
+
+.change_active_c {
+	background: #fff;
+}
+
+.change_active_a {
+	background: #EAF4F8;
+}
+
+.change_active_b {
+	background: #fafafa;
+}
 
 
 /*倒计时和信息板*/
@@ -262,7 +284,6 @@ body input:focus {
 
 #main_1 {
 	height: 300px;
-	/*border-radius: 5px 5px 0 0;*/
 }
 
 #main_1 canvas {
@@ -342,8 +363,18 @@ body input:focus {
 	height: 45px;
 	width: 1170px;
 	right: -1150px;
+	transition-property :all;
+	transition-duration:16.66ms;
+	-webkit-animation:rolling 34.16s linear infinite;
 }
-
+@-webkit-keyframes rolling{
+    0%{
+        right:-1150px;
+    }
+    100%{
+        right:900px;
+    }
+}
 #realtime_data span {
 	/*position: absolute;*/
 	margin-left: 25px;
@@ -552,7 +583,7 @@ background-position: 15px 0;*/
 /*招聘大厅-职位卡片-功能区*/
 
 .item_functional {
-	margin: 100px 0 0 0;
+	margin: 130px 0 0 0;
 	position: relative;
 }
 
@@ -887,14 +918,8 @@ background-position: 15px 0;*/
 }
 
 .search_input {
-	/*border: 1px solid #eee;*/
-	/*border-radius: 7px 0 0px 7px;*/
-	/*width: 730px;*/
-	/*width: 200px;*/
-	/*height: 45px;
-    line-height: 42px;*/
-	float: left;
-	/*display: inline-block;*/
+	    float: left;
+    margin-top: 2px;
 }
 
 .search_input input {
@@ -932,15 +957,179 @@ background-position: 15px 0;*/
 
 /*-------弹出层-------*/
 
-body .layer-dudu-class {
-	background: #fff;
-	color: #92dcd8;
+
+/*layer-body滚动条样式*/
+
+.layui-layer-content::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	background-color: transparent;
+	z-index: 4;
 }
 
+.layui-layer-close {
+	z-index: 3;
+	left: -17px;
+}
+
+.layui-layer-content::scrollbar {
+	width: 5px;
+	height: 5px;
+	background-color: transparent;
+}
+
+.layui-layer-content:hover::-webkit-scrollbar-thumb {
+	background: #CCC;
+	border-radius: 10px;
+}
+
+body .layui-container {
+	color: #000
+}
+
+body .layui-layer .layui-container img {
+	position: fixed;
+	/* bottom: 0; */
+	width: 580px;
+	/* left: 0; */
+	margin: -246px 0 0 0;
+}
+
+body .layui-container .layui-top .layer-title {
+	width: 580px;
+	padding: 3vh 0;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	background: #81e0d5;
+	color: #497660;
+	position: fixed;
+	margin-top: -95px;
+	z-index: 2;
+}
+
+body .layui-container .com_info {
+	font-size: 14px;
+	font-family: MicrosoftYaHei;
+	font-weight: 400;
+	color: rgba(51, 51, 51, 1);
+	line-height: 26px;
+	padding-left: 10px;
+	margin-top: 79px;
+}
+
+body .layui-container h3,
+.layui-container .com_info .com_name {
+	color: #00867c;
+	font-size: 18px;
+	font-weight: bold;
+	border-left: 2px solid;
+	padding-left: 5px
+}
+
+body .layui-container .layer-title img {
+	width: 326px;
+}
+
+body .com_info .com_info-box .com_tag {
+	margin-top: 10px;
+}
+
+body .com_info .com_info-box .com_tag span {
+	display: inline-block;
+	width: 61px;
+	height: 26px;
+	padding: 0 5px;
+	font-size: 12px;
+	line-height: 26px;
+	color: #00867c;
+	border: 1px solid #00867c;
+	border-radius: 3px;
+	text-align: center;
+	margin-right: 8px;
+	background: #fff;
+}
+
+body .layui-container .com_synopsis {
+	padding-top: 0px;
+	margin-top: 20px;
+}
+
+body .layui-container .com_info .title {
+	font-size: 18px;
+	font-family: MicrosoftYaHei;
+	font-weight: bold;
+	margin: 0px 10px 0 0;
+	padding: 0 0 0 4px;
+	border-bottom: 2px solid #00867c;
+	border-right: 2px solid #00867c;
+	width: 30px;
+	float: left;
+}
+
+body .com_synopsis-more,
+.com_synopsis-hide {
+	float: right;
+	position: relative;
+	top: -31px;
+	color: #009f95;
+	cursor: pointer;
+	width: 85px;
+	background: #fff;
+}
+
+body #com_synopsis-hide {
+	top: -26px;
+}
+
+body .com_synopsis p {
+	font-size: 14px;
+	height: 110px;
+	overflow: hidden;
+	padding-right: 10px;
+	position: relative;
+	text-align: justify;
+	letter-spacing: .6px;
+	margin: 0;
+}
+
+body .layui-container a {
+	color: #2DC1B7;
+}
+
+body .jobWrap .jobsList {
+	border-bottom: 1px solid rgba(175, 222, 206, 1);
+	margin-top: 20px;
+	height: 80px;
+	font-size: 14px;
+	position: relative;
+}
+
+body .layui-container .apply_jobs {
+	width: 105px;
+	line-height: 32px;
+	padding: 0 10px 0 32px;
+	font-size: 15px;
+	height: 32px;
+	background-color: #2dc1b7;
+	background-image: url(img/117.png);
+	background-repeat: no-repeat;
+	background-position: 6px -211px;
+	color: #FFFFFF;
+	border-radius: 4px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
 body #video_intive {
 	background: #5FB878;
 	color: #fff;
 	border: none;
+}
+
+body .layui-container .salary {
+	color: #FF8338;
 }
 
 @-webkit-keyframes doudong {
@@ -975,7 +1164,6 @@ body .layer_video_intive {
 	color: #fff;
 	border: none;
 }
-
 
 body .layer_video_info {
 	background-color: rgba(0, 0, 0, 0.8);

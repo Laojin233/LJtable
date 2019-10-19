@@ -54,6 +54,37 @@ $(function() {
 	}
 
 })
+//阻止默认行为
+
+var test = 
+function stopDefault( e )
+{ 
+   if ( e && e.preventDefault ) 
+      e.preventDefault(); 
+     else 
+        window.event.returnValue = false;  
+} 
+$('.item_info_box a').onclick = function(e)
+{ 
+     stopDefault(e); 
+} 
+//------------Vue 动态绑定-------------//
+var app = new Vue({
+  el: '#main_list-jobs',
+  data: {
+   		 comInfos: [
+	      { name: '广州市东洲有限公司',num:'20-99人'},
+	      { name: '广州市西洲有限公司',num:'100-199人' },
+	      { name: '广州市南洲有限公司',num:'10-30人' },
+	      { name: '广州市北洲有限公司',num:'100-300人' },
+	    ]
+  },
+  components:{
+  //	call:RongCall.call
+  }
+})
+
+
 
 //--------------------弹出层----------------------//
 //小提示-1
@@ -62,9 +93,6 @@ layer.ready(function() {
 		time: 5000,
 		tips: [2, '#3595CC'],
 		tipsMore: true,
-		//		cancel:true,
-		//		shade: [0.1,'#fff'],
-		//		style:'background-color:#09C1FF',
 	});
 })
 //小提示-2
@@ -133,12 +161,13 @@ $('.fair-info input').on('click', function() {
 $('.item_info_fix').on('click', function() {
 	//弹出一个iframe层
 	layer.open({
-		type: 2,
+		type: 1,
 		title: false,
 		//maxmin: true,
 		shadeClose: true, //点击遮罩关闭层
 		area: ['580px', '750px'],
-		content: './iframe.html',
+		scrollbar:false,
+		content:$('.layui-container'),
 		skin: 'layer-dudu-class',
 
 	});
@@ -201,17 +230,17 @@ function videoPopup() {
 
 
 //-----滚动公告
-var _d = -1050
-$(function() {
-	// 调用 公告滚动函数
-	setInterval(function() {
-		$('#roll_box').css("right", _d)
-		_d += 2;
-		if(_d >= 900) {
-			_d = -1050
-		}
-	}, 1000 / 30);
-});
+//var _d = -1050
+//$(function() {
+//	// 调用 公告滚动函数
+//	setInterval(function() {
+//		$('#roll_box').css("right", _d)
+//		_d += 2;
+//		if(_d >= 900) {
+//			_d = -1050
+//		}
+//	}, 1000 / 30);
+//});
 
 ////图表配置**
   var myDate = new Date;

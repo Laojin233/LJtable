@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<style type="text/css">
+	.ad_section{
+	    display: block;
+	    overflow: hidden;
+	    height:80px;
+	    position:relative;
+	    z-index: 8;
+	}
+	 .ad_figure{
+	    width: auto;
+	    display: inline;
+	    white-space: nowrap;
+	    position: absolute;
+	    z-index: 9;
+	}
+	.ad_figure p{
+	    display: inline-block;
+	    vertical-align: middle;;
+	    margin:auto 79px auto 0px;
+	}
+		</style>
+	</head>
+	<body>
+		<section class=" ad_section" >
+               <!-- 此处的left:0px必须设置，否者第一次的滚动不会触发trasition，会直处处的 -->
+               <figure class="ad_figure " style="left:0px;trasition:left 1s;">
+                 <p>让我掉下眼泪的 不止昨夜的酒</p>
+		        <p>让我依依不舍的 不止你的温柔</p>
+		        <p>余路还要走多久 你攥着我的手</p>
+		        <p>让我感到为难的 是挣扎的自由</p>
+		        <p>分别总是在九月 回忆是思念的愁</p>
+		        <p>深秋嫩绿的垂柳 亲吻着我额头</p>
+		        <p>在那座阴雨的小城里 我从未忘记你</p>
+		        <p>成都 带不走的 只有你</p>
+		        <p>和我在成都的街头走一走</p>
+		        <p>直到所有的灯都熄灭了也不停留</p>
+		        <p>你会挽着我的衣袖 我会把手揣进裤兜</p>
+		        <p>走到玉林路的尽头 坐在(走过)小酒馆的门口</p>
+               </figure> 
+               <figure class="ad_figure" >
+                <p>让我掉下眼泪的 不止昨夜的酒</p>
+		        <p>让我依依不舍的 不止你的温柔</p>
+		        <p>余路还要走多久 你攥着我的手</p>
+		        <p>让我感到为难的 是挣扎的自由</p>
+		        <p>分别总是在九月 回忆是思念的愁</p>
+		        <p>深秋嫩绿的垂柳 亲吻着我额头</p>
+		        <p>在那座阴雨的小城里 我从未忘记你</p>
+		        <p>成都 带不走的 只有你</p>
+		        <p>和我在成都的街头走一走</p>
+		        <p>直到所有的灯都熄灭了也不停留</p>
+		        <p>你会挽着我的衣袖 我会把手揣进裤兜</p>
+		        <p>走到玉林路的尽头 坐在(走过)小酒馆的门口</p>
+               </figure> 
+       </section> 
+	</body>
+	<script type="text/javascript">
+		function loop(){
+		   this.sumlength = $(".ad_section figure:eq(0)").outerWidth();//获取要滚动容器的width
+		   this.currnettranslatex1=0;//第一个容器每次滚动的距离
+		   this.currnettranslatex2=this.sumlength;//第二个容器每次滚动的距离
+		   this.currentimg=0;//因为每张图片的width不一，利用一个变量保存当前图片的序号
+//		   var intervalF = setInterval(function(){
+////		        this.step = parseInt($(".ad_section figure:eq(0) p").eq( this.currentimg).outerWidth())+10;//滚动的步长
+//		        this.currnettranslatex1 += (-10);//第一个容器每次滚动的距离
+//		        this.currnettranslatex2 += (-10);//第二个容器每次滚动 的距离
+//		          $('.ad_section figure:eq(0)').css({'left':this.currnettranslatex1+'px'});//容器1利用left实现滚动，transition实现优美点的滚动
+//		          $('.ad_section figure:eq(1)').css({'left':this.currnettranslatex2+'px'}); //容器2同上
+//		          if(this.currentimg<10){
+//		             this.currentimg++;
+//		          }else{//当第一个容器滚完后
+//		            this.currentimg=0;//当前图片序号归0
+//		            this.currnettranslatex1 = 0;//第一个容器的left归为初始值
+//		            this.currnettranslatex2 =this.sumlength;//第二个容器的left归为初始值
+//		             $($('.ad_section figure:eq(0)')).insertAfter($('.ad_section figure:eq(1)'));//把第一个滚玩的容器放到后面接着滚
+//		             $('.ad_section figure:eq(0)').css('left',this.currnettranslatex1+'px');
+//		             $('.ad_section figure:eq(1)').css('left',this.currnettranslatex2+'px');
+//		          }   
+//		   },1000/60); 
+		}
+		
+		loop();
+
+	</script>
+</html>

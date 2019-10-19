@@ -7,6 +7,23 @@
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" charset="UTF-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts-en.common.js"></script>
 		<script src="js/layer-v3.1.1/layer/layer.js" type="text/javascript"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- 配置文件 -->
+		<script src="calllib-v3/web/setting.js"></script>
+		
+		  <script src="calllib-v3/web/lib/vue-2.6.7.js"></script>
+		  <script src="calllib-v3/web/lib/vue-router-3.0.2.js"></script>
+		  <script src="http://cdn.ronghub.com/RongRTC.3.0.3.js"></script>
+		  <script src="http://cdn.ronghub.com/RongIMLib-2.5.1.js"></script>
+		  <script src="calllib-v3/web/lib/RongCallLib.3.1.2.js"></script>
+		  
+		  <script src="calllib-v3/web/js/common/utils.js"></script>
+		  <script src="calllib-v3/web/js/common/init.js"></script>
+		
+		  <script src="calllib-v3/web/js/dialog.js"></script>
+		  <script src="calllib-v3/web/js/login.js"></script>
+		  <script src="calllib-v3/web/js/call.js"></script>
+		  <script src="calllib-v3/web/js/main.js"></script>
 		<link rel="stylesheet" type="text/css" charset="utf-8" href="netfair.css" />
 	</head>
 
@@ -22,7 +39,7 @@
 						<div class="search_box" clearfix>
 							<div class="search_box-fix">
 								<div class="search_input">
-									<input type="text" name="key" placeholder=" 输入期望的职位名称" id="search_input"  value="" />
+									<input type="text" name="key" placeholder=" 输入期望的职位名称" id="search_input" value="" />
 								</div>
 								<div class="line"></div>
 								<input type="button" id="" class="search_btn" value="搜索" />
@@ -115,19 +132,19 @@
 								<input type="button" class="hall_personal change_active_b" name="" id="hall_personal" value="招聘大厅" />
 								<input type="button" class="hall_company change_active_c" name="" id="hall_company" value="求职大厅" />
 							</div>
-							<div class="main_list-jobs " style="display: block;">
+							<div class="main_list-jobs " id="main_list-jobs" style="display: block;">
 								<div class="main_list-jobs-fix" clearfix>
-									<div class="item ">
+									<div class="item" v-for="cominfo in comInfos">
 										<div class="item_info ">
-											<div class="item_info_fix " >
+											<div class="item_info_fix ">
 												<img src="img/bg2.png " class="item_title " />
 												<div class="job_state ">
 													<span>在线</span>
 													<img src="img/直角三角形.png " />
 												</div>
 												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-													<a href=" ">
+													<div class="com_name "><span>{{cominfo.name}}</span></div>
+													<a href="">
 														<p>销售专员</p><span>3k-4k</span></a>
 													<a href=" ">
 														<p>销售专员2 </p><span>3k-4k</span></a>
@@ -159,748 +176,12 @@
 											</div>
 											<div class="functional_btn ">
 												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
+												<div type="button" name=" " class="video-btn" @click='startCall(false)' value=""></div>
 												<div type="button" name=" " class="online-social-btn" value=""></div>
 												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
 											</div>
 										</div>
 									</div>
-
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix " id="">
-												<img src="img/bg2.png " class="item_title"/>
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>公司名称</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png " class="item_title " />
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>公司名称</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png " class="item_title "/>
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>公司名称</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title " />
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>公司名称</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title "/>
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>公司名称</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>30k-40k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>30k-40k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title "/>
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>公司名称</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title " />
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title " />
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title " />
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title " />
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png " class="item_title "  />
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title "/>
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png "  class="item_title "/>
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png " / class="item_title ">
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-													<a href=" ">销售主管<span>面议</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-											</div>
-
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-									<div class="item ">
-										<div class="item_info ">
-											<div class="item_info_fix ">
-												<img src="img/bg2.png " / class="item_title ">
-												<div class="job_state ">
-													<span>在线</span>
-													<img src="img/直角三角形.png " />
-												</div>
-												<div class="item_info_box ">
-													<div class="com_name "><span>公司名称</span></div>
-
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员2xxxxxxxxx</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员3</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员4</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员5</p><span>3k-4k</span></a>
-													<a href=" ">
-														<p>销售专员</p><span>3k-4k</span></a>
-
-												</div>
-												<div class="more-btn ">
-													<input type="button" name="more " id="more " value="展开更多职位 " />
-												</div>
-
-											</div>
-										</div>
-										<div class="item_functional">
-											<div class="functional_bg">
-												<img src="img/girl_3.png" class="img_girl ">
-												<img src="img/boy_1.png" class="img_boy ">
-												<img src="img/table1.png " class="img_table ">
-											</div>
-											<div class="functional_btn ">
-												<input type="button" name=" " class="social-btn" value="立即沟通 ">
-												<div type="button" name=" " class="video-btn" value=""></div>
-												<div type="button" name=" " class="online-social-btn" value=""></div>
-												<div type="button" name=" " class="apply-jobs-btn" value=""></div>
-											</div>
-										</div>
-									</div>
-
 								</div>
 							</div>
 							<div class="main_list-person" style="display: none;">
@@ -1082,30 +363,190 @@
 			</div>
 		</div>
 		</div>
+		<!--layer弹出层-->
 		<div id="layer-move"></div>
 		<div id="layer_video_intive" style="display: none">
 			<div class="layer_video_info" clearfix>
-				<img src="img/111.jpg" class="video_initiator_logo"/>
+				<img src="img/111.jpg" class="video_initiator_logo" />
 				<div class="video_initiator">
-					<span class="cut_wrod">广州市东洲装饰工程有限公司</span>
-					邀请你进行视频聊天
+					<span class="cut_wrod">广州市东洲装饰工程有限公司</span> 邀请你进行视频聊天
 				</div>
 			</div>
 			<div class="layer_video_btn">
 				<div class="layer_video_btn_a">
 					<input type="button" name="" id="video_accept" value="" />
-					<span class="layer_video_text">接听</span>					
+					<span class="layer_video_text">接听</span>
 				</div>
-				<div class="layer_video_timer" style="text-align: center;"><span id="video_overTime">20</span>秒后自动挂断...</div>					
+				<div class="layer_video_timer" style="text-align: center;"><span id="video_overTime">20</span>秒后自动挂断...</div>
 				<div class="layer_video_btn_r">
 					<input type="button" name="" id="video_refuse" value="" />
-					<span class="layer_video_text">挂断</span>					
+					<span class="layer_video_text">挂断</span>
 				</div>
 
 			</div>
 		</div>
 		<div id="layer_text_intive" style="display: none">
 			<!--为在线聊天预留-->
+		</div>
+		<div class="layui-container" style="display: none;">
+			<div class="layui-top">
+				<div class="layer-title">
+					招聘简章
+					<!--<img src="img/116.png"/>-->
+				</div>
+				<div class="com_info">
+					<div class="com_name">
+						广州市东洲装饰工程有限公司
+					</div>
+					<div class="com_info-box">
+						民营 | 建筑与工程 | 20-99人 | 广东/广州/天河区
+						<div class="com_tag">
+							<span> 环境好</span>
+							<span> 年终奖</span>
+							<span> 双休</span>
+							<span> 交通方便</span>
+							<span> 有提成</span>
+							<span> 有年假 </span>
+						</div>
+					</div>
+					<div class="com_synopsis">
+						<div class="title">公司简介</div>
+						<p id="synopsis">
+							本公司是欧派家居集团股份有限公司下属工程销售、设计、运输、安装、 售服分公司——广州市东洲装饰工程有限公司，欧派家居集团股份有限公司创立于1994年， 是中国家居知名品牌，拥有国际化家居产品制造基地。欧派以整体橱柜为龙头，带动相关产业发展 ，包括全屋定制、衣柜、卫浴、木门、墙饰壁纸、厨房电器、寝具等，形成多元化产业格局，是国 内综合型的现代整体家居一体化服务供应商，品牌运营已有二十载，有丰富的行业经验及成绩，欢 迎优秀的你加入我们的行列。
+						</p>
+						<div class="com_synopsis-more" id='com_synopsis-more' onclick="comsynMore()" style="display: block;">...更多</div>
+						<div class="com_synopsis-hide" id='com_synopsis-hide' onclick="comsynHide()" style="display: none;">收起</div>
+					</div>
+					<!--<div class="com_synopsis">
+			</div>-->
+				</div>
+			</div>
+			<div class="layui-main" style="padding:35px 10px 0 10px;">
+				<h3>招聘职位</h3>
+				<div class="jobWrap">
+					<div class="jobsList">
+						<div class="jobs fl">
+							<div class="title">
+								<a href="">装修现场监理 </a>
+								广东/广州/天河区
+							</div>
+							<div class="info">
+								<span class="salary">
+							3K-5K/月
+						</span> |
+								<span class="education">
+							中技
+						</span> |
+								<span class="jobsNum">
+							招1人
+						</span>
+							</div>
+						</div>
+						<div class="apply_jobs">申请职位</div>
+					</div>
+					<div class="jobsList">
+						<div class="jobs fl">
+							<div class="title">
+								<a href="">CAD绘图员家居定制</a>
+								广东/广州/天河区
+							</div>
+							<div class="info">
+								<span class="salary">
+							 3K-5K/月
+						</span>
+								<span class="education">
+							经验不限 / 大专
+						</span>
+								<span class="jobsNum">
+							招1人
+						</span>
+							</div>
+						</div>
+						<div class="apply_jobs">申请职位</div>
+					</div>
+					<div class="jobsList">
+						<div class="jobs fl">
+							<div class="title">
+								<a href="">CAD绘图员家居定制</a>
+								广东/广州/天河区
+							</div>
+							<div class="info">
+								<span class="salary">
+							 3K-5K/月
+						</span> |
+								<span class="education">
+							经验不限 / 大专
+						</span> |
+								<span class="jobsNum">
+							招1人
+						</span>
+							</div>
+						</div>
+						<div class="apply_jobs">申请职位</div>
+					</div>
+					<div class="jobsList">
+						<div class="jobs fl">
+							<div class="title">
+								<a href="">装修现场监理 </a>
+								广东/广州/天河区
+							</div>
+							<div class="info">
+								<span class="salary">
+							3K-5K/月
+						</span> |
+								<span class="education">
+							中技
+						</span> |
+								<span class="jobsNum">
+							招1人
+						</span>
+							</div>
+						</div>
+						<div class="apply_jobs">申请职位</div>
+					</div>
+					<div class="jobsList">
+						<div class="jobs fl">
+							<div class="title">
+								<a href="">CAD绘图员家居定制</a>
+								广东/广州/天河区
+							</div>
+							<div class="info">
+								<span class="salary">
+							 3K-5K/月
+						</span>
+								<span class="education">
+							经验不限 / 大专
+						</span>
+								<span class="jobsNum">
+							招1人
+						</span>
+							</div>
+						</div>
+						<div class="apply_jobs">申请职位</div>
+					</div>
+					<div class="jobsList">
+						<div class="jobs fl">
+							<div class="title">
+								<a href="">装修现场监理 </a>
+								广东/广州/天河区
+							</div>
+							<div class="info">
+								<span class="salary">
+							3K-5K/月
+						</span> |
+								<span class="education">
+							中技
+						</span> |
+								<span class="jobsNum">
+							招1人
+						</span>
+							</div>
+						</div>
+						<div class="apply_jobs">申请职位</div>
+					</div>
+				</div>
+			</div>
+			<img src="./img/115.png" />
 		</div>
 	</body>
 

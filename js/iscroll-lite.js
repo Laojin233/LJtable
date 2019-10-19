@@ -256,7 +256,6 @@ var utils = (function () {
 	me.click = function (e) {
 		var target = e.target,
 			ev;
-
 		if ( !(/(SELECT|INPUT|TEXTAREA)/i).test(target.tagName) ) {
 			// https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/initMouseEvent
 			// initMouseEvent is deprecated.
