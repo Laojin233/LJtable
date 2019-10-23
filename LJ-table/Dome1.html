@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>柱状图</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/table.css" />
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="myTable"></div>
+	</body>
+	<script type="text/javascript">
+		//图表配置**
+		var _tableData = [0, ]
+		var myDate = new Date,
+			year = myDate.getFullYear(), //获取当前年
+			mon = myDate.getMonth() + 1, //获取当前月
+			date = myDate.getDate(),
+			Chart_title = year + "年" + mon + "月" + date + "日" + '-实时数据'; 
+		var myTable_option = {
+			el:'#myTable',
+			title: Chart_title || "实时数据",
+			data: [0, 100, 50, 300, 251, 412],
+			tableOpt: true,
+			xText: ['面试邀请', '参会企业', '在线企业', '在线人数', '求职人数'],
+		}
+	
+		ClearTable(myTable_option);
+	</script>
+</html>
