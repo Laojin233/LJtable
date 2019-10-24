@@ -256,11 +256,11 @@ label.bui-switch-label.bui-switch-animbg input:checked+.bui-switch:before {
 	font-size: 12px;
 	line-height: 1;
 	text-align: center;
-	transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
+	transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
 }
 
 .left_two {
@@ -288,7 +288,7 @@ label.bui-switch-label.bui-switch-animbg input:checked+.bui-switch:before {
 	margin-bottom: 42px;
 	position: absolute;
 	bottom: 0px;
-	width: 100%;
+	/*width: 100%;*/
 	min-width: 280px;
 }
 
@@ -324,7 +324,7 @@ label.bui-switch-label.bui-switch-animbg input:checked+.bui-switch:before {
 .xAais .xitem {
 	/*text-align: center;*/
 	width: 17%;
-	max-width: 60px;
+	/*max-width: 40px;*/
 	line-height: 0;
 	display: inline-block;
 	margin-bottom: -4px;
@@ -377,7 +377,7 @@ label.bui-switch-label.bui-switch-animbg input:checked+.bui-switch:before {
 	display: inline-block;
 	position: absolute;
 	bottom: -24px;
-	margin-left: -12px;
+	/*margin-left: -12px;*/
 }
 
 .scrollbarH {

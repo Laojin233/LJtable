@@ -25,12 +25,14 @@ $(document).on('dblclick', "#table-data th", function() {
 $(document).on('click', "#addGidItem", function() {
 	console.log('+')
 	myTable_option.xText.push('');
-	myTable_option.data.push(0)
+	myTable_option.data.push(100)
 	console.log($(`.xitem${myTable_option.data.length}`))
-	$(`.xitem${myTable_option.data.length-2}`).after(`<div class="xitem xitem${myTable_option.data.length-1}" style='margin-left:5px;background:#cc${myTable_option.data.length-1}'>
+	$(`.xitem${myTable_option.data.length-2}`).after(`<div class="xitem xitem${myTable_option.data.length-1}" style='margin-left:5px;background:${randomHexColor()}'>
 						<div class="xbar"></div>
 						<span class="xtext interval"></span>
-	</div>`)	
+	</div>`)
+//	var a=$('.data_table').css('min-width').substr(0,$('.data_table').css('min-width').length-2)
+//	$('.data_table').css('min-width',Number(a)+60)
 	DatatableShow(true,myTable_option)
 	showMyTable(myTable_option);
 })
@@ -55,7 +57,7 @@ function ClearTable(option){
 				<div class="yAais">
 				</div>
 				<div class="xAais">
-					<div class="xitem" style="height: 200px;width: 0;"></div>
+					<div style="height: 200px;width: 0;display: inline-block;margin-bottom: -4px;"></div>
 					<div class="xitem xitem1">
 						<div class="xbar">100</div>
 						<span class="xtext interval">面试邀请</span>
@@ -137,7 +139,9 @@ function ScrollShow(_show) {
 				btn.style.left = moveX + 'px'; //滑块与左边的距离
 				var ratio = Number(s) * 100 / 250
 				$('.data_table').css('width', ratio + '%')
-				$(".xitem .xtext").css('margin-left', (ratio / 100) * 40 - 12)
+				console.log()
+//				$(".xitem .xtext").css('margin-left', (ratio / 100) * 40 - 12)
+//				$(".xitem .xtext").css('margin-left', ((ratio / 100)-0.6)*$('.xitem').outerWidth()-5)
 				//最大时			
 				if(ratio >= 50) {
 					$('.xtext').removeClass('interval')
@@ -212,10 +216,13 @@ function showMyTable(option) {
 	for(i = 0; i <option.xText.length ; i++) {
 		var dom = ".xitem" + (i+1)
 		var height = (option.data[i+1] / XmaxNumFix) * 200;
+		var width=(100/option.xText.length-3)
+		$(dom).css('width', width+'%')
 		$(dom).css('height', height)
 		var domNum = ".xitem" + (i+1) + ' .xbar'
+		$(domNum).css('width', width+'%')
 		$(domNum).text(option.data[i+1])
-		console.log("barNum",option.data[i+1])
+		domText(i+1,option.xText[i])
 	}
 	//Y轴
 	console.log('111')
@@ -244,6 +251,14 @@ function showMyTable(option) {
 			});
 		}
 	}
+}
+
+function randomHexColor() { //随机生成十六进制颜色
+ var hex = Math.floor(Math.random() * 16777216).toString(16); //生成ffffff以内16进制数
+ while (hex.length < 6) { //while循环判断hex位数，少于6位前面加0凑够6位
+  hex = '0' + hex;
+ }
+ return '#' + hex; //返回‘#'开头16进制颜色
 }
 
 function domText(i, text) {
