@@ -1,0 +1,398 @@
+<link rel="stylesheet" type="text/css" charset="utf-8" href="{:C('TPL_PUBLIC_DIR')}/css/video.css" />
+<div id="layer_video_intive" style="display: none">
+        <!-- 视频邀请弹窗 -->
+        <div class="layer_video_info" clearfix>
+            <img id="intiverLogo" src="{:C('TPL_PUBLIC_DIR')}/images/111.jpg" class="video_initiator_logo" />
+            <div class="video_initiator">
+                <span class="cut_wrod" id="intiverName">广州市东洲装饰工程有限公司</span>
+                邀请你进行视频聊天
+            </div>
+        </div>
+        <div class="layer_video_btn">
+                <div class="layer_video_btn_a">
+                    <input type="button" name="" id="video_accept" value="" />
+                    <span class="layer_video_text">接听</span>
+                </div>
+                <div class="layer_video_timer" style="text-align: center;"><span id="video_overTime">20</span>秒后自动挂断...
+                </div>
+                <div class="layer_video_btn_r">
+                    <input type="button" name="" id="video_refuse" value="" />
+                    <span class="layer_video_text">挂断</span>
+                </div>
+        </div>
+</div>
+
+<div id="layer_video_calling" style="display: none;">
+    <div id="remoteVideo"></div>
+    <!-- 视频中的窗口 -->
+    <div class="layer_video_info"  clearfix>
+        <img id="remoteLogo" src="{:C('TPL_PUBLIC_DIR')}/images/111.jpg" class="video_initiator_logo" />
+        <div class="video_initiator">
+            <span id="remoteName">广州市东洲装饰工程有限公司</span>
+            <if condition="C('visitor.utype') eq 1">
+                <div id="layer_call_resume_btn" style="margin-top: 4px;">点击查看学生简历</div>  
+            </if>
+            <if condition="C('visitor.utype') eq 2">
+                <div style="margin-top: 4px;">正在视频面试中...</div>    
+            </if>                     
+        </div>
+    </div>
+    <div class="layer_video_btns" >
+            <div class="layer_video_btn_p">
+                <input type="button" name="" id="video_prohibitions" class="video_prohibitions" value="" />
+                <span class="layer_video_text">静音</span>
+            </div>
+            <div class="layer_video_btn_r">
+                <input type="button" name="" id="video_call_refuse" value="" />
+                <span class="layer_video_text">挂断</span>
+            </div>
+            <div class="layer_video_btn_b">
+                <input type="button" name="" id="video_beauty" value="" />
+                <span class="layer_video_text">切换</span>
+            </div>
+    </div>
+</div>
+
+<div id="layer_videoCall_thumb" style="display:none;width:180px;height:120px;">
+        <!-- <video id="localVideo" autoplay muted playsinline style="width:180px;height:110px;object-fit:fill;">
+            <source src="/Application/Jobfair/View/default/Rongyun/56685baa3f3d256a1241551af8c7854f.mp4"
+                type="video/mp4">
+        </video> -->
+</div>
+
+<div class="layer_call_resume" id="layer_call_resume"></div>
+
+<div id="layer_voice_calling" style="display: none;">
+    <!-- 语音通话中的窗口 -->
+    <div class="layer_video_info" clearfix>
+        <img src="{:C('TPL_PUBLIC_DIR')}/images/111.jpg" class="video_initiator_logo" />
+        <div class="video_initiator">
+            <span>广州市东洲装饰工程有限公司</span>
+            <if condition="C('visitor.utype') eq 1">
+                <div id="layer_call_resume_btn" style="margin-top: 4px;">点击查看学生简历</div>
+            </if>
+            <if condition="C('visitor.utype') eq 2">
+                <div style="margin-top: 4px;">正在语音通话中...</div>
+            </if>
+    </div>
+    <div class="layer_video_btns">
+        <div class="layer_video_btn_p">
+            <input type="button" name="" id="video_prohibitions" class="video_prohibitions" value="" />
+            <span class="layer_video_text">静音</span>
+        </div>
+        <div class="layer_video_btn_r">
+            <input type="button" name="" id="video_call_refuse" value="" />
+            <span class="layer_video_text">挂断</span>
+        </div>
+        <div class="layer_video_btn_b">
+            <input type="button" name="" id="video_beauty" value="" />
+            <span class="layer_video_text">切换</span>
+        </div>
+    </div>
+</div>
+<style>
+    #layer_call_resume_btn {
+        cursor: pointer;
+        left: 0;
+    }
+</style>
+<script>   
+        var _isSum=false
+        var _is_tips2=0
+        var _tim;
+        var _tim_active;
+        var _tim_openBox,_tim_openVideo;
+        var _tim_type;
+        var _tim_result;
+        var _tim_remoteId;
+        var _tim_roomId;
+        var _tim_myselfId;
+        var _videoReady;
+        $(document).on('click', '#layer_call_resume_btn', function () {
+            console.log(_tim_remoteId)
+            if(_isSum==false){
+                _isSum=true;
+                resumePopup(_tim_remoteId,2);             
+            }else{
+                layui.layer.close(_resume)
+            }
+        })
+        window.onbeforeunload=function(e){     
+        　　var e = window.event||e;  
+            let promise = _tim.logout();
+            promise.then(function(imResponse) {
+            console.log("退出成功",imResponse.data); // 登出成功
+            }).catch(function(imError) {
+            console.warn('logout error:', imError);
+            });
+        } 
+layui.use(['layim', 'jquery',], function (layim, jquery) {
+    var $ = layui.jquery;
+    layim = layui.layim;
+    var loginTime;
+    $.ajax({
+        type: "post",
+        url: qscms.root + '?m=Jobfair&c=Network&a=getToken',
+        dataType: "json",
+        async: false,
+        success: function (result) {
+            _tim_result = result;
+            console.log("result*********",result)
+            if (result.msg == 'success') {
+                var options = {
+                    SDKAppID: result.data.sdkAppID // 接入时需要将0替换为您的即时通信应用的 SDKAppID
+                };
+                // 创建 SDK 实例，TIM.create() 方法对于同一个 SDKAppID 只会返回同一份实例
+                _tim = TIM.create(options);
+                // 注册 COS SDK 插件
+                _tim.registerPlugin({'cos-js-sdk': COS});
+                // 设置 SDK 日志输出级别为 release 级别，详细分级请参见 setLogLevel 接口的说明
+                _tim.setLogLevel(1);
+                _tim_myselfId =result.data.uid;
+                let promise = _tim.login({userID: result.data.uid, userSig: result.data.token});
+                promise.then(function(imResponse) {
+                    loginTime=parseInt(new Date().getTime()/1000)
+                    console.log('登录成功',imResponse.data); // 登录成功
+                }).catch(function(imError) {
+                    console.warn('login error:', imError); // 登录失败的相关信息
+                });  
+            }
+        },
+        error: function (jqXHR) {
+        }
+    });
+
+    layim.config({
+        init: {
+        //配置客户信息
+            mine: {
+                "username": _tim_result.data.userName //我的昵称
+                ,"id":_tim_myselfId//我的ID
+                ,"status": "online" //在线状态 online：在线、hide：隐身
+                ,"remark": "" //我的签名
+                ,"avatar": _tim_result.data.avatar //我的头像
+            }
+        }
+        //开启客服模式
+        ,brief: true
+        //扩展工具栏
+        ,tool: [
+                    // { alias: 'code', title: '代码', icon: '&#xe64e;' },
+                    { alias: 'video', title: '视频', icon: '&#xe6ed;' },
+                    // { alias: 'audio', title: '语音', icon: '&#xe688;' },
+                    // { alias: 'resume', title: '投递简历', icon: '&#xe609;' },
+        ]
+        , copyright: true
+        , initSkin: '2.jpg' //1-5 设置初始背景
+        // , notice: true //是否开启桌面消息提醒，默认fal
+    });
+    layim.on('tool(video)', function (insert, send, obj) {
+        console.log(obj)
+        console.log(layim.cache())
+        _tim_openVideo(obj.data.name,obj.data.id,obj.data.avatar) 
+        
+    });
+
+    _tim.on(TIM.EVENT.MESSAGE_RECEIVED, function(event) {
+    // 收到推送的单聊、群聊、群提示以及群系统通知的新消息，可通过遍历 event.data 获取消息列表数据并渲染到页面
+    // event.name - TIM.EVENT.MESSAGE_RECEIVED
+    // event.data - 存储 Message 对象的数组 - [Message]
+    var nowTime=parseInt(new Date().getTime()/1000)
+    var lasttime=event.data[event.data.length-1].time-loginTime
+    console.log('收到消息',event.data,`距登录${lasttime}s`)
+    // var cache =  layui.layim.cache();
+    // var local = layui.data('layim')[cache.mine.id]; //获取当前用户本地数据
+    // console.log(cache)
+    // console.log(local)
+    // layim.setFriendStatus(11111, 'offline'); //设置指定好友离线，即头像置灰
+    // //这里以删除本地聊天记录为例
+    // delete local.chatlog;
+    
+    // //向localStorage同步数据
+    // layui.data('layim', {
+    // key: cache.mine.id
+    // ,value: local
+    // });
+    for (let i = 0; i < event.data.length; i++) {
+        var msgType=event.data[i].payload.data
+        var ary =  String(event.data[i].payload.extension);
+        var strs = new Array(); 
+        strs = ary.split("-"); //字符分割
+        // console.log('类型',msgType,'时间',event.data[i].time-nowTime,"内容",event.data[i].payload.description)
+        if(msgType=='chat')
+        {
+            _tim_remoteId=event.data[i].from
+            layim.getMessage({
+                username: String(strs[0]) //消息来源用户名
+                ,avatar: String(strs[1]) //消息来源用户头像
+                ,id: event.data[i].from //消息的来源ID（如果是私聊，则是用户id，如果是群聊，则是群组id）
+                ,type: "friend" //聊天窗口来源类型，从发送消息传递的to里面获取
+                ,content: event.data[i].payload.description //消息内容
+                ,cid: 0 //消息id，可不传。除非你要对消息进行一些操作（如撤回）
+                ,mine: false //是否我发送的消息，如果为true，则会显示在右方
+                ,fromid: event.data[i].from //消息的发送者id（比如群组中的某个消息发送者），可用于自动解决浏览器多窗口时的一些问题
+                ,timestamp:event.data[i].time*1000 //服务端时间戳毫秒数。注意：如果你返回的是标准的 unix 时间戳，记得要 *1000
+            });
+        }else 
+        if(msgType=='video'&&-5<=(event.data[i].time-nowTime))
+        {
+            _tim_remoteId=event.data[i].from
+            _tim_roomId=event.data[i].payload.description
+            console.log(`来自${_tim_remoteId}不过期的video邀请:${_tim_myselfId},----`,event.data,_tim_roomId,event.data[i].time-loginTime)
+            inviteShow(strs[0],strs[1])
+            changeRemoteInfo(strs[0],strs[1])
+        }else 
+        if(msgType=='closeVideo'&&event.data[i].time-loginTime>0)
+        {
+            console.log(`来自${_tim_remoteId}不过期的Closevideo:${_tim_myselfId},${event.data[i].time-loginTime} S前`)
+            if(event.data[i].payload.description=='invite'){
+                layer.msg('对方未接听！')
+            }
+            console.log('不过期的closeVideo',event.data[i])
+            layer.msg('对方已挂断')
+            try{
+                layer.close(_callingWindow)
+                layer.close(_yaoqing)				
+            } catch(e){
+                console.log(e);
+            }    
+        }else
+        if(msgType=="acceptVideo"&&-5<=(event.data[i].time-nowTime)){
+            clearTimeout(_lastTimer)
+            layer.close(_videoReady)
+        }
+        
+    }  
+    });
+
+    _tim.on(TIM.EVENT.CONVERSATION_LIST_UPDATED, function(event) {
+        // 收到会话列表更新通知，可通过遍历 event.data 获取会话列表数据并渲染到页面
+        // event.name - TIM.EVENT.CONVERSATION_LIST_UPDATED
+        // event.data - 存储 Conversation 对象的数组 - [Conversation]
+        // layim.getMessage(event);
+        // var nowTime=parseInt(new Date().getTime()/1000)
+        // for(var i=0;i<event.data.length;i++){
+        //     var msgType=event.data[i].lastMessage.payload.data
+        //     if(msgType=='closeVideo'&&&&0<=(event.data[i].lastMessage.lastTime-nowTime))
+        //     {
+        //         if(event.data[i].lastMessage.payload.description==1){
+        //              layer.msg('对方挂断了视频！')
+        //         }else 
+        //         if(event.data[i].lastMessage.payload.description=='invite'){
+        //             layer.msg('对方拒绝了视频邀请！')
+        //         }
+        //         console.log('不过期的closeVideo')    
+        //         layer.close(_callingWindow)
+                         
+        //     }
+        // } 
+        // console.log(22,event);
+    });
+
+    var $ = layui.jquery;
+    _tim_active = {
+        chat: function(){
+            //自定义会话
+            layim.chat({
+                name: name
+                ,type: 'friend'
+                ,avatar: avatar
+                ,id: id
+            });
+        },
+    }
+    _tim_openBox=function(userName, uid, img)
+    {
+        name=userName;
+        // console.log(name)
+        id=uid;
+        avatar = img;
+        _tim_type = 'chat';
+        _tim_active[_tim_type] ? _tim_active[_tim_type].call(this) : '';
+        // 将某会话下所有未读消息已读上报
+        let promise = _tim.setMessageRead({conversationID: 'C2Cexample'});
+        promise.then(function(imResponse) {
+            // 已读上报成功
+            console.log('已读！'); 
+        }.catch(function(imError){
+            // 已读上报失败
+            console.warn('setMessageRead error:', imError);
+        }))
+       
+    }
+    _tim_openVideo=function(userName, uid, img)
+    {   
+        _tim_remoteId=uid
+        _tim_roomId= _tim_myselfId+_tim_remoteId
+        console.log(`**************uid********`,_tim_myselfId,`roomId${_tim_roomId}`)
+        if (rtc){}
+        else{
+            const config = genTestUserSig(_tim_myselfId);
+            rtc = new RtcClient({
+                        userId:_tim_myselfId,
+                        roomId:_tim_roomId,
+                        sdkAppId: config.sdkAppId,
+                        userSig: config.userSig
+                });
+        }
+        videoShow(userName,img) 
+        _lastTimer=setTimeout(function(){
+            layer.msg('对方不在线或暂时离开')
+            layer.close(_callingWindow)
+            clearTimeout(_lastTimer)
+        },40000)
+        _videoReady=layer.msg('视频通话准备中...',{time:10000})       
+        let message = _tim.createCustomMessage({
+            to: uid,
+            conversationType: TIM.TYPES.CONV_C2C,
+            payload: {
+                data: 'video', 
+                description: String(_tim_roomId), 
+                extension: _tim_result.data.userName+'-'+_tim_result.data.avatar
+            }
+        });
+        let msg = _tim.sendMessage(message);
+        msg.then(function(imResponse) {
+        // 发送成功
+            console.log('imResponse',res.mine.content);
+        }).catch(function(imError) {
+        // 发送失败
+            console.warn('sendMessage error:', imError);
+        });
+    }
+
+    layim.on('sendMessage', function(res){
+        console.log('发送消息   ',res,res.to.id);
+        console.log('aa',res.mine.username);
+        let timestamp=new Date().getTime();
+        let message = _tim.createCustomMessage({
+            to: res.to.id,
+            conversationType: TIM.TYPES.CONV_C2C,
+            payload: {
+                data: 'chat', 
+                description: res.mine.content, 
+                extension: res.mine.username+'-'+String(res.mine.avatar)
+                // extension: userName+'-'+String(img)+'-'+'video'
+            }
+        });
+        let msg = _tim.sendMessage(message);
+        msg.then(function(imResponse) {
+        // 发送成功
+            console.log('imResponse',res.mine.content);
+        }).catch(function(imError) {
+        // 发送失败
+            console.warn('sendMessage error:', imError);
+        });
+
+    });
+});
+        // if (rtc){}else{
+        //                 const config = genTestUserSig(_tim_myselfId);
+        //                 rtc = new RtcClient({
+        //                     userId:_tim_myselfId,
+        //                     roomId:_tim_roomId,
+        //                     sdkAppId: config.sdkAppId,
+        //                     userSig: config.userSig
+        //                 });
+        //             }
+</script>
