@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="layer-checkJobPopup">
+			<div class="radio_box">
+				<input name="job1" type="radio" id="job1" />
+				<label for="job1" style="font-size:15px;">选项一</label>
+			</div>
+		</div>
+		<style>
+			#layer-checkJobPopup .check_box label:after {
+				content: '';
+				width: 8px;
+				height: 4px;
+				position: absolute;
+				top: 4px;
+				left: 3px;
+				border: 2px solid #cacaca;/*对勾实现关键代码*/
+				border-top: none;/*对勾实现关键代码*/
+				border-right: none;/*对勾实现关键代码*/
+				opacity: 0.4;
+				transform: rotate(-45deg);/*对勾实现关键代码*/
+				/*border一个矩形，然后左上消失。*/
+			}
+			#layer-checkJobPopup .radio_box input:checked+label:after {
+				content: '';
+				width: 9px;
+				height: 9px;
+				position: absolute;
+				top: 3px;
+				left: 3px;
+				background: #ef4949;
+				border-radius: 50%;
+			}
+		</style>
+	</body>
+	<script type="text/javascript">
+		//--公司选择个人---//
+	var _checkJobPopup
+	function checkJobPopup(id){
+		_checkJobPopup=layer.open({
+			// type: 1,
+			// title: '选择您要招聘的岗位',
+			// //shadeClose: true, //点击遮罩关闭层
+			// time:0,
+			// area: ['250px', '300px'],
+			// shade: false,
+			// content:
+			type: 3,
+			content: $('#layer-checkJobPopup'),
+			skin: 'layer-dudu-class',
+			resize: false,
+			title: "选择您要招聘的岗位",
+			//maxmin: true,
+			shadeClose: true, //点击遮罩关闭层
+			area: ['300px', '250px'],
+			// skin: 'layer-dudu-class',
+		})
+	}
+			
+	</script>
+</html>

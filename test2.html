@@ -30,6 +30,26 @@ function changImg(e,name) {
         }
     }
 }
+
+class CParent extends HTMLElement {
+  connectedCallback() {
+    this.firstChild.remove();
+  }
+}
+customElements.define("c-parent", CParent);
+console.log(customElements)
+class CChild extends HTMLElement {
+  connectedCallback() {
+    console.log("CChild connectedCallback: isConnected =", this.isConnected);
+  }
+}
+customElements.define("c-child", CChild);
+
+const parent = new CParent(),
+      child = new CChild();
+parent.append(child);
+document.body.append(parent);
+
 		</script>
 	</body>
 </html>

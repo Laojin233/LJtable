@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		s
+		<style type="text/css">
+			h1, li, ul, ol, table, tr, td, th, p, blockquote, body {
+			    margin: 0;
+			    padding: 0;
+			    font-size: 14px;
+			}
+			.mytable{
+				width: 100%;
+				max-width: 1000px;
+				height: 500px;
+				border: none;
+				border-collapse: collapse;
+   				border-spacing: 0;
+			}
+			.mytable th{
+				
+			    text-align: left;
+			    font-weight: normal;
+			    padding: 0.5em 3px;
+			    border: 1px solid #eee;
+			    background: #fbfbfb;
+			}
+			.mytable td{
+			    border: 1px solid #eee;
+			    padding: 0.5em 3px;
+			    vertical-align: top;
+			}
+			.mytable td .item{
+				cursor: move;
+				height: 85px;
+				    position: relative;
+			    margin-bottom: 4px;
+			    border: 1px solid #ccc;
+			    padding: 5px;
+			    word-wrap: break-word;
+			    font-size: 0.9em;
+			}
+			.mytable td .item span{
+				padding-left: 10px;
+			}
+			.board-task-list{
+				min-height: 400px;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="mytable" border="" cellspacing="" cellpadding="">
+			<tr>
+				<th>表头1</th>
+				<th>表头2</th>
+				<th>表头3</th>
+				<th>表头4</th>
+				<th>表头5</th>
+				<th>表头6</th>
+			</tr>
+			<tr>
+				<td>
+					<div class="board-task-list ">
+						<div class="item moveItem">
+						<span>数据一</span>	
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="item moveItem">
+						<span>数据二</span>	
+						</div>
+				</td>
+				<td>数据3</td>
+				<td>数据4</td>
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript">
+		
+		function domBindMove(el, options) {
+		    this.el = $(el);
+		    this.el.attr('autocomplete', 'off');
+		    this.suggestions = [];
+		    this.data = [];
+		    this.badQueries = [];
+		    this.selectedIndex = -1;
+		    this.currentValue = this.el.val();
+		    this.intervalId = 0;
+		    this.cachedResponse = [];
+		    this.onChangeInterval = null;
+		    this.ignoreValueChange = false;
+		    this.serviceUrl = options.serviceUrl;
+		    this.isLocal = false;
+		    this.options = {
+		      autoSubmit: false,
+		      minChars: 1,
+		      maxHeight: 300,
+		      deferRequestBy: 0,
+		      width: 0,
+		      highlight: true,
+		      params: {},
+		      fnFormatResult: fnFormatResult,
+		      delimiter: null,
+		      zIndex: 9999,
+		    };
+		    this.initialize();
+		    this.setOptions(options);
+		 }
+		var boxX=$('.mytable').offset().left
+		var boxY=$('.mytable').offset().top
+		$('.moveItem').on('mousedown',function(){
+			var downX=boxX;
+			document.onmousemove=function(e){	
+                var moveX=e.clientX-boxX; //滑动的时候距离窗口的x轴的间距  滑动的x-按下的x             
+                var moveY=e.clientY-boxY;
+                //只有在大于0的时候才拖动
+                if(moveX>0){
+                	s=$('.moveItem').css('left').substr(0,$('.moveItem').css('left').length-2)
+                    $('.moveItem').css("left",moveX+'px')//滑块与左边的距离
+                    $('.moveItem').css("top",moveY+'px')//滑块与上边的距离
+                    var ratio=`${Number(s)*100/250}%`
+//					console.log(ratio)
+					$('.data_table').css('width',ratio)
+					//最大时
+					if(ratio>='50%'){
+						$('.xtext').removeClass('interval')
+					}else{}
+					if($('.data_table').css('width')<'50%'){
+						$('.xtext').addClass('interval')
+					}
+//                  if(moveX>=(box.offsetWidth-btn.offsetWidth)){
+//						btn.style.left=box.offsetWidth-btn.offsetWidth+'px';
+//                  }
+                }
+                
+            }
+		})
+		//松开
+        document.onmouseup=function(e){
+        	 document.onmousemove=null;
+        	 $('.moveItem').css('background-color','#fff');
+        	 $('.moveItem').css('border-color','#8D8D8D');
+        	 reset()
+        }
+			
+		
+//		window.onload=function(){
+//  	//事件:滑块1.按下  onmousedown
+//      //2.拖动 onmousemove
+//      //3.松开 onmouseup
+//// 		var moveX;
+// 		var boxX=$('.scrollbarH').offset().left
+//      var box=document.getElementsByClassName('scrollbarH')[0];//大盒子
+//      var btn=document.getElementById('scroller');//滑块
+//      //按下
+//      btn.onmousedown=function(e){
+//          var downX=boxX; //按下按钮后与窗口的x轴间距
+//           $('#scroller').css('background-color','#a6d2cf');
+//      	 $('#scroller').css('border-color','#2DC1B7');
+//          document.onmousemove=function(e){	
+//              var moveX=e.clientX-boxX; //滑动的时候距离窗口的x轴的间距  滑动的x-按下的x             
+//              //只有在大于0的时候才拖动
+//              if(moveX>0){
+//              	s=$('#scroller').css('left').substr(0,$('#scroller').css('left').length-2)
+//                  btn.style.left=moveX+'px';//滑块与左边的距离
+//                  var ratio=`${Number(s)*100/250}%`
+////					console.log(ratio)
+//					$('.data_table').css('width',ratio)
+//					//最大时
+//					if(ratio>='50%'){
+//						$('.xtext').removeClass('interval')
+//					}else{}
+//					if($('.data_table').css('width')<'50%'){
+//						$('.xtext').addClass('interval')
+//					}
+//                  if(moveX>=(box.offsetWidth-btn.offsetWidth)){
+//						btn.style.left=box.offsetWidth-btn.offsetWidth+'px';
+//                  }
+//              }
+//              
+//          }
+//      }
+//      //松开
+//      document.onmouseup=function(e){
+//      	 document.onmousemove=null;
+//      	 $('#scroller').css('background-color','#fff');
+//      	 $('#scroller').css('border-color','#8D8D8D');
+//      }
+//}
+//		//图表配置**
+//		var myDate = new Date,
+//			year = myDate.getFullYear(), //获取当前年
+//			mon = myDate.getMonth() + 1, //获取当前月
+//			date = myDate.getDate(),
+//			Chart_title = year + "年" + mon + "月" + date + "日" + '-实时数据';
+//		var myTable_option = {
+//			title: Chart_title || "实时数据",
+//			//数据 第一个必须为0  
+//			data: [0, 1, 25, 10, 50, 156],
+//		}
+//		showMyTable(myTable_option);
+//
+//		function showMyTable(option) {
+//			$('.data_table_title').text(option.title)
+//			var XmaxNumFix = Math.ceil(Math.max.apply(null, option.data) / 100) * 100
+//			//console.log(XmaxNumFix)
+//			var XmaxNum = Math.max.apply(null, option.data)
+//			//X轴
+//			for(i = 1; i < 6; i++) {
+//				var dom = ".xitem" + i
+//				var height = (option.data[i] / XmaxNumFix) * 200;
+//				$(dom).css('height', height)
+//				var domtetx = ".xitem" + i + ' .xbar'
+//				$(domtetx).text(option.data[i])
+//			}
+//			//Y轴
+//			if(XmaxNum <= 100) {
+//				var arr = ['100', '50', '0']
+//				for(let index = 0; index < 3; index++) {
+//					$(document).ready(function() {
+//						$("<span></span>", {
+//							class: "ynumber",
+//							text: arr[index],
+//							style: `top:${index * 47}%`
+//						}).appendTo(".yAais")
+//					});
+//				}
+//			} else {
+//				var arr = [XmaxNumFix, XmaxNumFix / 5 * 4, XmaxNumFix / 5 * 3, XmaxNumFix / 5 * 2, XmaxNumFix / 5, 0]
+//				for(let index = 0; index < 6; index++) {
+//					$(document).ready(function() {
+//						$("<span></span>", {
+//							class: "ynumber",
+//							text: arr[index],
+//							style: `top:${index * 19}%`
+//						}).appendTo(".yAais")
+//					});
+//				}
+//			}
+//		}
+	</script>
+</html>
